@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="kolledzDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="groups">
           <Key>
             <PropertyRef Name="ID" />
@@ -241,7 +241,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="kolledzDBModelStoreContainer">
+        <EntityContainer Name="DBModelStoreContainer">
           <EntitySet Name="groups" EntityType="Self.groups" Schema="kolledz" store:Type="Tables" />
           <EntitySet Name="oppevorms" EntityType="Self.oppevorms" Schema="kolledz" store:Type="Tables" />
           <EntitySet Name="roles" EntityType="Self.roles" Schema="kolledz" store:Type="Tables" />
@@ -305,7 +305,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="kolledzDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="groups">
           <Key>
             <PropertyRef Name="ID" />
@@ -631,9 +631,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="kolledzDBModelStoreContainer" CdmEntityContainer="KolledzDBEntities">
+        <EntityContainerMapping StorageEntityContainer="DBModelStoreContainer" CdmEntityContainer="KolledzDBEntities">
           <EntitySetMapping Name="groups">
-            <EntityTypeMapping TypeName="kolledzDBModel.groups">
+            <EntityTypeMapping TypeName="DBModel.groups">
               <MappingFragment StoreEntitySet="groups">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="group_code" ColumnName="group_code" />
@@ -641,7 +641,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="oppevorms">
-            <EntityTypeMapping TypeName="kolledzDBModel.oppevorms">
+            <EntityTypeMapping TypeName="DBModel.oppevorms">
               <MappingFragment StoreEntitySet="oppevorms">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="oppevorm" ColumnName="oppevorm" />
@@ -649,7 +649,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="roles">
-            <EntityTypeMapping TypeName="kolledzDBModel.roles">
+            <EntityTypeMapping TypeName="DBModel.roles">
               <MappingFragment StoreEntitySet="roles">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -657,7 +657,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="students">
-            <EntityTypeMapping TypeName="kolledzDBModel.students">
+            <EntityTypeMapping TypeName="DBModel.students">
               <MappingFragment StoreEntitySet="students">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -669,7 +669,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="subject_group">
-            <EntityTypeMapping TypeName="kolledzDBModel.subject_group">
+            <EntityTypeMapping TypeName="DBModel.subject_group">
               <MappingFragment StoreEntitySet="subject_group">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="subject_code" ColumnName="subject_code" />
@@ -678,7 +678,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="subject_student">
-            <EntityTypeMapping TypeName="kolledzDBModel.subject_student">
+            <EntityTypeMapping TypeName="DBModel.subject_student">
               <MappingFragment StoreEntitySet="subject_student">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="subject_code" ColumnName="subject_code" />
@@ -687,7 +687,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="subject_teacher">
-            <EntityTypeMapping TypeName="kolledzDBModel.subject_teacher">
+            <EntityTypeMapping TypeName="DBModel.subject_teacher">
               <MappingFragment StoreEntitySet="subject_teacher">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="subject_code" ColumnName="subject_code" />
@@ -696,7 +696,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="subjects">
-            <EntityTypeMapping TypeName="kolledzDBModel.subjects">
+            <EntityTypeMapping TypeName="DBModel.subjects">
               <MappingFragment StoreEntitySet="subjects">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="title" ColumnName="title" />
@@ -710,7 +710,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="kolledzDBModel.users">
+            <EntityTypeMapping TypeName="DBModel.users">
               <MappingFragment StoreEntitySet="users">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="email" ColumnName="email" />
@@ -723,7 +723,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="visits">
-            <EntityTypeMapping TypeName="kolledzDBModel.visits">
+            <EntityTypeMapping TypeName="DBModel.visits">
               <MappingFragment StoreEntitySet="visits">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="student_code" ColumnName="student_code" />

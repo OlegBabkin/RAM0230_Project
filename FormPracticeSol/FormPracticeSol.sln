@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainMenu", "MainMenu\MainMenu.csproj", "{27EF8012-3F82-4F7A-B4CA-E962DA29DA07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BathhouseMngForm", "BathhouseMngForm\BathhouseMngForm.csproj", "{A2F8DBDE-B125-4FDD-8EBA-76CF1009AD4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GasStationMngForm", "GasStationMngForm\GasStationMngForm.csproj", "{FC8EBC20-8F12-4D67-BC2C-133017EADC3E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{27EF8012-3F82-4F7A-B4CA-E962DA29DA07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27EF8012-3F82-4F7A-B4CA-E962DA29DA07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27EF8012-3F82-4F7A-B4CA-E962DA29DA07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27EF8012-3F82-4F7A-B4CA-E962DA29DA07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2F8DBDE-B125-4FDD-8EBA-76CF1009AD4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2F8DBDE-B125-4FDD-8EBA-76CF1009AD4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2F8DBDE-B125-4FDD-8EBA-76CF1009AD4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2F8DBDE-B125-4FDD-8EBA-76CF1009AD4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC8EBC20-8F12-4D67-BC2C-133017EADC3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC8EBC20-8F12-4D67-BC2C-133017EADC3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC8EBC20-8F12-4D67-BC2C-133017EADC3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC8EBC20-8F12-4D67-BC2C-133017EADC3E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

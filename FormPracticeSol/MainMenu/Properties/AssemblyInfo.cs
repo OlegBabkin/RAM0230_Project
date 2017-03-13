@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RAM0230_Project_group_1.domain")]
+[assembly: AssemblyTitle("MainMenu")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RAM0230_Project_group_1.domain")]
+[assembly: AssemblyProduct("MainMenu")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("de4db725-4cb1-4e59-8efa-4e7fb87ae7ee")]
+[assembly: Guid("27ef8012-3f82-4f7a-b4ca-e962da29da07")]
 
 // Version information for an assembly consists of the following four values:
 //
