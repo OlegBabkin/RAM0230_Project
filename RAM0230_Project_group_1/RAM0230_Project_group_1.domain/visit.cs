@@ -12,7 +12,7 @@ namespace RAM0230_Project_group_1.domain
     using System;
     using System.Collections.Generic;
     
-    public partial class visits
+    public partial class visit
     {
         public int ID { get; set; }
         public string student_code { get; set; }
@@ -21,7 +21,7 @@ namespace RAM0230_Project_group_1.domain
         public Nullable<int> paar_nr { get; set; }
         public int subject_teacher_id { get; set; }
     
-        public virtual students students { get; set; }
+        public virtual student student { get; set; }
         public virtual subject_teacher subject_teacher { get; set; }
     }
 }

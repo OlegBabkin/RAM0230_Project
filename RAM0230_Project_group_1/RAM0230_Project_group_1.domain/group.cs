@@ -12,12 +12,12 @@ namespace RAM0230_Project_group_1.domain
     using System;
     using System.Collections.Generic;
     
-    public partial class groups
+    public partial class group
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public groups()
+        public group()
         {
-            this.students = new HashSet<students>();
+            this.students = new HashSet<student>();
             this.subject_group = new HashSet<subject_group>();
         }
     
@@ -25,7 +25,7 @@ namespace RAM0230_Project_group_1.domain
         public string group_code { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<students> students { get; set; }
+        public virtual ICollection<student> students { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<subject_group> subject_group { get; set; }
     }

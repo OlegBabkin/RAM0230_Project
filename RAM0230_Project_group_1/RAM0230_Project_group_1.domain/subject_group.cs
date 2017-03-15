@@ -15,10 +15,10 @@ namespace RAM0230_Project_group_1.domain
     public partial class subject_group
     {
         public int ID { get; set; }
-        public string subject_code { get; set; }
+        public int subject_id { get; set; }
         public int group_id { get; set; }
     
-        public virtual groups groups { get; set; }
-        public virtual subjects subjects { get; set; }
+        public virtual group group { get; set; }
+        public virtual subject subject { get; set; }
     }
 }

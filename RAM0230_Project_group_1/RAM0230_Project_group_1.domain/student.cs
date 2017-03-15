@@ -12,18 +12,27 @@ namespace RAM0230_Project_group_1.domain
     using System;
     using System.Collections.Generic;
     
-    public partial class roles
+    public partial class student
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public roles()
+        public student()
         {
-            this.users = new HashSet<users>();
+            this.subject_student = new HashSet<subject_student>();
+            this.visits = new HashSet<visit>();
         }
     
-        public int ID { get; set; }
+        public string code { get; set; }
         public string name { get; set; }
+        public string lastname { get; set; }
+        public int oppevorm_id { get; set; }
+        public string email { get; set; }
+        public int group_id { get; set; }
     
+        public virtual group group { get; set; }
+        public virtual oppevorm oppevorm { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<users> users { get; set; }
+        public virtual ICollection<subject_student> subject_student { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<visit> visits { get; set; }
     }
 }

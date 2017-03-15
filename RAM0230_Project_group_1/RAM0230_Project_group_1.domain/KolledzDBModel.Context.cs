@@ -25,15 +25,15 @@ namespace RAM0230_Project_group_1.domain
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<groups> groups { get; set; }
-        public virtual DbSet<oppevorms> oppevorms { get; set; }
-        public virtual DbSet<roles> roles { get; set; }
-        public virtual DbSet<students> students { get; set; }
+        public virtual DbSet<group> groups { get; set; }
+        public virtual DbSet<oppevorm> oppevorms { get; set; }
+        public virtual DbSet<role> roles { get; set; }
+        public virtual DbSet<student> students { get; set; }
         public virtual DbSet<subject_group> subject_group { get; set; }
         public virtual DbSet<subject_student> subject_student { get; set; }
         public virtual DbSet<subject_teacher> subject_teacher { get; set; }
-        public virtual DbSet<subjects> subjects { get; set; }
-        public virtual DbSet<users> users { get; set; }
-        public virtual DbSet<visits> visits { get; set; }
+        public virtual DbSet<subject> subjects { get; set; }
+        public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<visit> visits { get; set; }
     }
 }

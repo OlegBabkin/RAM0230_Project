@@ -14,5 +14,6 @@ namespace RAM0230_Project_group_1.domain.Repositories
         void Insert(T entity);
         void Delete(T entity);
         void Update(T entity);
+        void Commit();
     }
 }

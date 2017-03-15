@@ -12,10 +12,10 @@ namespace RAM0230_Project_group_1.domain
     using System;
     using System.Collections.Generic;
     
-    public partial class users
+    public partial class user
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public users()
+        public user()
         {
             this.subject_teacher = new HashSet<subject_teacher>();
         }
@@ -28,7 +28,7 @@ namespace RAM0230_Project_group_1.domain
         public string lastname { get; set; }
         public int role_id { get; set; }
     
-        public virtual roles roles { get; set; }
+        public virtual role role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<subject_teacher> subject_teacher { get; set; }
     }

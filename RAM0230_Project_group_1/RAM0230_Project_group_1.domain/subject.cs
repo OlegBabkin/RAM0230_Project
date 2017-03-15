@@ -12,27 +12,33 @@ namespace RAM0230_Project_group_1.domain
     using System;
     using System.Collections.Generic;
     
-    public partial class students
+    public partial class subject
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public students()
+        public subject()
         {
+            this.subject_group = new HashSet<subject_group>();
             this.subject_student = new HashSet<subject_student>();
-            this.visits = new HashSet<visits>();
+            this.subject_teacher = new HashSet<subject_teacher>();
         }
     
+        public int ID { get; set; }
+        public string lekt { get; set; }
         public string code { get; set; }
-        public string name { get; set; }
-        public string lastname { get; set; }
+        public string title { get; set; }
+        public string semester { get; set; }
+        public Nullable<decimal> lecture_hours { get; set; }
+        public Nullable<decimal> practice_hours { get; set; }
+        public Nullable<decimal> exercises_hours { get; set; }
         public int oppevorm_id { get; set; }
-        public string email { get; set; }
-        public int group_id { get; set; }
+        public string language { get; set; }
     
-        public virtual groups groups { get; set; }
-        public virtual oppevorms oppevorms { get; set; }
+        public virtual oppevorm oppevorm { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<subject_group> subject_group { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<subject_student> subject_student { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<visits> visits { get; set; }
+        public virtual ICollection<subject_teacher> subject_teacher { get; set; }
     }
 }
