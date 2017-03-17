@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RAM0230_Project_group_1.domain
+namespace Project.domain
 {
     using System;
     using System.Collections.Generic;
@@ -17,9 +17,10 @@ namespace RAM0230_Project_group_1.domain
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public subject()
         {
-            this.subject_group = new HashSet<subject_group>();
-            this.subject_student = new HashSet<subject_student>();
-            this.subject_teacher = new HashSet<subject_teacher>();
+            this.visits = new HashSet<visit>();
+            this.groups = new HashSet<group>();
+            this.students = new HashSet<student>();
+            this.users = new HashSet<user>();
         }
     
         public int ID { get; set; }
@@ -35,10 +36,12 @@ namespace RAM0230_Project_group_1.domain
     
         public virtual oppevorm oppevorm { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<subject_group> subject_group { get; set; }
+        public virtual ICollection<visit> visits { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<subject_student> subject_student { get; set; }
+        public virtual ICollection<group> groups { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<subject_teacher> subject_teacher { get; set; }
+        public virtual ICollection<student> students { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<user> users { get; set; }
     }
 }

@@ -1,22 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace RAM0230_Project_group_1.domain.Repositories
+namespace Project.domain.Repositories
 {
-    class GroupsRepository : IRepository<group>
+    class VisitsRepository : IRepository<visit>
     {
-        KolledzDBEntities context;
+        KolledzDBConn context;
 
-        public GroupsRepository()
+        public VisitsRepository()
         {
-            this.context = new KolledzDBEntities();
+            this.context = new KolledzDBConn();
         }
 
-        public GroupsRepository(KolledzDBEntities db)
+        public VisitsRepository(KolledzDBConn db)
         {
             this.context = db;
         }
@@ -25,30 +22,30 @@ namespace RAM0230_Project_group_1.domain.Repositories
             this.context.SaveChanges();
         }
 
-        public void Delete(group entity)
+        public void Delete(visit entity)
         {
-            this.context.groups.Find(entity.ID);
-            this.context.groups.Remove(entity);
+            this.context.visits.Find(entity.ID);
+            this.context.visits.Remove(entity);
         }
 
-        public IQueryable<group> FindBy(Expression<Func<group, bool>> predicate)
+        public IQueryable<visit> FindBy(Expression<Func<visit, bool>> predicate)
         {
             return GetAllEntries().Where(predicate);
         }
 
-        public IQueryable<group> GetAllEntries()
+        public IQueryable<visit> GetAllEntries()
         {
-            return this.context.groups.AsQueryable<group>();
+            return this.context.visits.AsQueryable<visit>();
         }
 
-        public void Insert(group entity)
+        public void Insert(visit entity)
         {
-            this.context.groups.Add(entity);
+            this.context.visits.Add(entity);
         }
 
-        public void Update(group entity)
+        public void Update(visit entity)
         {
-            var oldEntity = context.groups.Find(entity.ID);
+            var oldEntity = context.visits.Find(entity.ID);
             this.context.Entry(oldEntity).CurrentValues.SetValues(entity);
         }
 

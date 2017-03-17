@@ -7,23 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RAM0230_Project_group_1.domain
+namespace Project.domain
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class role
+    public partial class group
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public role()
+        public group()
         {
-            this.users = new HashSet<user>();
+            this.students = new HashSet<student>();
+            this.subjects = new HashSet<subject>();
         }
     
         public int ID { get; set; }
-        public string name { get; set; }
+        public string group_code { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user> users { get; set; }
+        public virtual ICollection<student> students { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<subject> subjects { get; set; }
     }
 }

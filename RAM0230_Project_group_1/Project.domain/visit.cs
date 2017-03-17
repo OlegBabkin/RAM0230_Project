@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RAM0230_Project_group_1.domain
+namespace Project.domain
 {
     using System;
     using System.Collections.Generic;
@@ -19,9 +19,9 @@ namespace RAM0230_Project_group_1.domain
         public System.DateTime date { get; set; }
         public string lesson_type { get; set; }
         public Nullable<int> paar_nr { get; set; }
-        public int subject_teacher_id { get; set; }
+        public Nullable<int> subject_id { get; set; }
     
         public virtual student student { get; set; }
-        public virtual subject_teacher subject_teacher { get; set; }
+        public virtual subject subject { get; set; }
     }
 }

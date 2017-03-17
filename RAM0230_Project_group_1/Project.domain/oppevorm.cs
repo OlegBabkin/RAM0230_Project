@@ -7,29 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RAM0230_Project_group_1.domain
+namespace Project.domain
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class user
+    public partial class oppevorm
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public user()
+        public oppevorm()
         {
-            this.subject_teacher = new HashSet<subject_teacher>();
+            this.students = new HashSet<student>();
+            this.subjects = new HashSet<subject>();
         }
     
         public int ID { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public string login { get; set; }
-        public string name { get; set; }
-        public string lastname { get; set; }
-        public int role_id { get; set; }
+        public string oppevorm1 { get; set; }
     
-        public virtual role role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<subject_teacher> subject_teacher { get; set; }
+        public virtual ICollection<student> students { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<subject> subjects { get; set; }
     }
 }

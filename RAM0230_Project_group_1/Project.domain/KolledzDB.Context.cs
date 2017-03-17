@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RAM0230_Project_group_1.domain
+namespace Project.domain
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class KolledzDBEntities : DbContext
+    public partial class KolledzDBConn : DbContext
     {
-        public KolledzDBEntities()
-            : base("name=KolledzDBEntities")
+        public KolledzDBConn()
+            : base("name=KolledzDBConn")
         {
         }
     
@@ -29,9 +29,6 @@ namespace RAM0230_Project_group_1.domain
         public virtual DbSet<oppevorm> oppevorms { get; set; }
         public virtual DbSet<role> roles { get; set; }
         public virtual DbSet<student> students { get; set; }
-        public virtual DbSet<subject_group> subject_group { get; set; }
-        public virtual DbSet<subject_student> subject_student { get; set; }
-        public virtual DbSet<subject_teacher> subject_teacher { get; set; }
         public virtual DbSet<subject> subjects { get; set; }
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<visit> visits { get; set; }

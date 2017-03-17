@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="KolledzDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="KolledzDB.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="groups">
           <Key>
             <PropertyRef Name="ID" />
@@ -39,25 +39,25 @@
         </EntityType>
         <EntityType Name="subject_group">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="subject_id" />
+            <PropertyRef Name="group_id" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="subject_id" Type="int" Nullable="false" />
           <Property Name="group_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="subject_student">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="subject_id" />
+            <PropertyRef Name="student_code" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="subject_id" Type="int" Nullable="false" />
           <Property Name="student_code" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="subject_teacher">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="subject_id" />
+            <PropertyRef Name="teacher_id" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="subject_id" Type="int" Nullable="false" />
           <Property Name="teacher_id" Type="int" Nullable="false" />
         </EntityType>
@@ -97,8 +97,20 @@
           <Property Name="date" Type="smalldatetime" Nullable="false" />
           <Property Name="lesson_type" Type="char" MaxLength="1" />
           <Property Name="paar_nr" Type="int" />
-          <Property Name="subject_teacher_id" Type="int" Nullable="false" />
+          <Property Name="subject_id" Type="int" />
         </EntityType>
+        <Association Name="FK__visits__subject___6D9742D9">
+          <End Role="subjects" Type="Self.subjects" Multiplicity="0..1" />
+          <End Role="visits" Type="Self.visits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="subjects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="visits">
+              <PropertyRef Name="subject_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_student_group">
           <End Role="groups" Type="Self.groups" Multiplicity="1" />
           <End Role="students" Type="Self.students" Multiplicity="*" />
@@ -231,19 +243,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_visit_subject_teacher">
-          <End Role="subject_teacher" Type="Self.subject_teacher" Multiplicity="1" />
-          <End Role="visits" Type="Self.visits" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="subject_teacher">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="visits">
-              <PropertyRef Name="subject_teacher_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="KolledzDBModelStoreContainer">
+        <EntityContainer Name="KolledzDBStoreContainer">
           <EntitySet Name="groups" EntityType="Self.groups" Schema="kolledz" store:Type="Tables" />
           <EntitySet Name="oppevorms" EntityType="Self.oppevorms" Schema="kolledz" store:Type="Tables" />
           <EntitySet Name="roles" EntityType="Self.roles" Schema="kolledz" store:Type="Tables" />
@@ -254,6 +254,10 @@
           <EntitySet Name="subjects" EntityType="Self.subjects" Schema="kolledz" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="kolledz" store:Type="Tables" />
           <EntitySet Name="visits" EntityType="Self.visits" Schema="kolledz" store:Type="Tables" />
+          <AssociationSet Name="FK__visits__subject___6D9742D9" Association="Self.FK__visits__subject___6D9742D9">
+            <End Role="subjects" EntitySet="subjects" />
+            <End Role="visits" EntitySet="visits" />
+          </AssociationSet>
           <AssociationSet Name="fk_student_group" Association="Self.fk_student_group">
             <End Role="groups" EntitySet="groups" />
             <End Role="students" EntitySet="students" />
@@ -298,16 +302,12 @@
             <End Role="students" EntitySet="students" />
             <End Role="visits" EntitySet="visits" />
           </AssociationSet>
-          <AssociationSet Name="fk_visit_subject_teacher" Association="Self.fk_visit_subject_teacher">
-            <End Role="subject_teacher" EntitySet="subject_teacher" />
-            <End Role="visits" EntitySet="visits" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="KolledzDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="KolledzDB" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="group">
           <Key>
             <PropertyRef Name="ID" />
@@ -315,7 +315,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="group_code" Type="String" MaxLength="6" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="students" Relationship="Self.fk_student_group" FromRole="groups" ToRole="students" />
-          <NavigationProperty Name="subject_group" Relationship="Self.fk_subject_group_group" FromRole="groups" ToRole="subject_group" />
+          <NavigationProperty Name="subjects" Relationship="Self.subject_group" FromRole="groups" ToRole="subjects" />
         </EntityType>
         <EntityType Name="oppevorm">
           <Key>
@@ -346,39 +346,8 @@
           <Property Name="group_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="group" Relationship="Self.fk_student_group" FromRole="students" ToRole="groups" />
           <NavigationProperty Name="oppevorm" Relationship="Self.fk_student_oppevorm" FromRole="students" ToRole="oppevorms" />
-          <NavigationProperty Name="subject_student" Relationship="Self.fk_subject_student_student" FromRole="students" ToRole="subject_student" />
           <NavigationProperty Name="visits" Relationship="Self.fk_visit_student" FromRole="students" ToRole="visits" />
-        </EntityType>
-        <EntityType Name="subject_group">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="subject_id" Type="Int32" Nullable="false" />
-          <Property Name="group_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="group" Relationship="Self.fk_subject_group_group" FromRole="subject_group" ToRole="groups" />
-          <NavigationProperty Name="subject" Relationship="Self.fk_subject_group_subject" FromRole="subject_group" ToRole="subjects" />
-        </EntityType>
-        <EntityType Name="subject_student">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="subject_id" Type="Int32" Nullable="false" />
-          <Property Name="student_code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="student" Relationship="Self.fk_subject_student_student" FromRole="subject_student" ToRole="students" />
-          <NavigationProperty Name="subject" Relationship="Self.fk_subject_student_subject" FromRole="subject_student" ToRole="subjects" />
-        </EntityType>
-        <EntityType Name="subject_teacher">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="subject_id" Type="Int32" Nullable="false" />
-          <Property Name="teacher_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="subject" Relationship="Self.fk_subject_teacher_subject" FromRole="subject_teacher" ToRole="subjects" />
-          <NavigationProperty Name="user" Relationship="Self.fk_subject_teacher_user" FromRole="subject_teacher" ToRole="users" />
-          <NavigationProperty Name="visits" Relationship="Self.fk_visit_subject_teacher" FromRole="subject_teacher" ToRole="visits" />
+          <NavigationProperty Name="subjects" Relationship="Self.subject_student" FromRole="students" ToRole="subjects" />
         </EntityType>
         <EntityType Name="subject">
           <Key>
@@ -395,9 +364,10 @@
           <Property Name="oppevorm_id" Type="Int32" Nullable="false" />
           <Property Name="language" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="oppevorm" Relationship="Self.fk_subject_oppevorm" FromRole="subjects" ToRole="oppevorms" />
-          <NavigationProperty Name="subject_group" Relationship="Self.fk_subject_group_subject" FromRole="subjects" ToRole="subject_group" />
-          <NavigationProperty Name="subject_student" Relationship="Self.fk_subject_student_subject" FromRole="subjects" ToRole="subject_student" />
-          <NavigationProperty Name="subject_teacher" Relationship="Self.fk_subject_teacher_subject" FromRole="subjects" ToRole="subject_teacher" />
+          <NavigationProperty Name="visits" Relationship="Self.FK__visits__subject___6D9742D9" FromRole="subjects" ToRole="visits" />
+          <NavigationProperty Name="groups" Relationship="Self.subject_group" FromRole="subjects" ToRole="groups" />
+          <NavigationProperty Name="students" Relationship="Self.subject_student" FromRole="subjects" ToRole="students" />
+          <NavigationProperty Name="users" Relationship="Self.subject_teacher" FromRole="subjects" ToRole="users" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -411,7 +381,7 @@
           <Property Name="lastname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="role_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="role" Relationship="Self.fk_user_role" FromRole="users" ToRole="roles" />
-          <NavigationProperty Name="subject_teacher" Relationship="Self.fk_subject_teacher_user" FromRole="users" ToRole="subject_teacher" />
+          <NavigationProperty Name="subjects" Relationship="Self.subject_teacher" FromRole="users" ToRole="subjects" />
         </EntityType>
         <EntityType Name="visit">
           <Key>
@@ -422,9 +392,9 @@
           <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="lesson_type" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="paar_nr" Type="Int32" />
-          <Property Name="subject_teacher_id" Type="Int32" Nullable="false" />
+          <Property Name="subject_id" Type="Int32" />
           <NavigationProperty Name="student" Relationship="Self.fk_visit_student" FromRole="visits" ToRole="students" />
-          <NavigationProperty Name="subject_teacher" Relationship="Self.fk_visit_subject_teacher" FromRole="visits" ToRole="subject_teacher" />
+          <NavigationProperty Name="subject" Relationship="Self.FK__visits__subject___6D9742D9" FromRole="visits" ToRole="subjects" />
         </EntityType>
         <Association Name="fk_student_group">
           <End Role="groups" Type="Self.group" Multiplicity="1" />
@@ -434,18 +404,6 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="students">
-              <PropertyRef Name="group_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_subject_group_group">
-          <End Role="groups" Type="Self.group" Multiplicity="1" />
-          <End Role="subject_group" Type="Self.subject_group" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="groups">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="subject_group">
               <PropertyRef Name="group_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -486,18 +444,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_subject_student_student">
-          <End Role="students" Type="Self.student" Multiplicity="1" />
-          <End Role="subject_student" Type="Self.subject_student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="students">
-              <PropertyRef Name="code" />
-            </Principal>
-            <Dependent Role="subject_student">
-              <PropertyRef Name="student_code" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_visit_student">
           <End Role="students" Type="Self.student" Multiplicity="1" />
           <End Role="visits" Type="Self.visit" Multiplicity="*" />
@@ -510,84 +456,41 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_subject_group_subject">
-          <End Role="subjects" Type="Self.subject" Multiplicity="1" />
-          <End Role="subject_group" Type="Self.subject_group" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="subjects">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="subject_group">
-              <PropertyRef Name="subject_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_subject_student_subject">
-          <End Role="subjects" Type="Self.subject" Multiplicity="1" />
-          <End Role="subject_student" Type="Self.subject_student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="subjects">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="subject_student">
-              <PropertyRef Name="subject_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_subject_teacher_subject">
-          <End Role="subjects" Type="Self.subject" Multiplicity="1" />
-          <End Role="subject_teacher" Type="Self.subject_teacher" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="subjects">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="subject_teacher">
-              <PropertyRef Name="subject_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_subject_teacher_user">
-          <End Role="users" Type="Self.user" Multiplicity="1" />
-          <End Role="subject_teacher" Type="Self.subject_teacher" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="subject_teacher">
-              <PropertyRef Name="teacher_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_visit_subject_teacher">
-          <End Role="subject_teacher" Type="Self.subject_teacher" Multiplicity="1" />
+        <Association Name="FK__visits__subject___6D9742D9">
+          <End Role="subjects" Type="Self.subject" Multiplicity="0..1" />
           <End Role="visits" Type="Self.visit" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="subject_teacher">
+            <Principal Role="subjects">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="visits">
-              <PropertyRef Name="subject_teacher_id" />
+              <PropertyRef Name="subject_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="KolledzDBEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="subject_group">
+          <End Role="groups" Type="Self.group" Multiplicity="*" />
+          <End Role="subjects" Type="Self.subject" Multiplicity="*" />
+        </Association>
+        <Association Name="subject_student">
+          <End Role="students" Type="Self.student" Multiplicity="*" />
+          <End Role="subjects" Type="Self.subject" Multiplicity="*" />
+        </Association>
+        <Association Name="subject_teacher">
+          <End Role="subjects" Type="Self.subject" Multiplicity="*" />
+          <End Role="users" Type="Self.user" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="KolledzDBConn" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="groups" EntityType="Self.group" />
           <EntitySet Name="oppevorms" EntityType="Self.oppevorm" />
           <EntitySet Name="roles" EntityType="Self.role" />
           <EntitySet Name="students" EntityType="Self.student" />
-          <EntitySet Name="subject_group" EntityType="Self.subject_group" />
-          <EntitySet Name="subject_student" EntityType="Self.subject_student" />
-          <EntitySet Name="subject_teacher" EntityType="Self.subject_teacher" />
           <EntitySet Name="subjects" EntityType="Self.subject" />
           <EntitySet Name="users" EntityType="Self.user" />
           <EntitySet Name="visits" EntityType="Self.visit" />
           <AssociationSet Name="fk_student_group" Association="Self.fk_student_group">
             <End Role="groups" EntitySet="groups" />
             <End Role="students" EntitySet="students" />
-          </AssociationSet>
-          <AssociationSet Name="fk_subject_group_group" Association="Self.fk_subject_group_group">
-            <End Role="groups" EntitySet="groups" />
-            <End Role="subject_group" EntitySet="subject_group" />
           </AssociationSet>
           <AssociationSet Name="fk_student_oppevorm" Association="Self.fk_student_oppevorm">
             <End Role="oppevorms" EntitySet="oppevorms" />
@@ -601,33 +504,25 @@
             <End Role="roles" EntitySet="roles" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
-          <AssociationSet Name="fk_subject_student_student" Association="Self.fk_subject_student_student">
-            <End Role="students" EntitySet="students" />
-            <End Role="subject_student" EntitySet="subject_student" />
-          </AssociationSet>
           <AssociationSet Name="fk_visit_student" Association="Self.fk_visit_student">
             <End Role="students" EntitySet="students" />
             <End Role="visits" EntitySet="visits" />
           </AssociationSet>
-          <AssociationSet Name="fk_subject_group_subject" Association="Self.fk_subject_group_subject">
+          <AssociationSet Name="FK__visits__subject___6D9742D9" Association="Self.FK__visits__subject___6D9742D9">
             <End Role="subjects" EntitySet="subjects" />
-            <End Role="subject_group" EntitySet="subject_group" />
-          </AssociationSet>
-          <AssociationSet Name="fk_subject_student_subject" Association="Self.fk_subject_student_subject">
-            <End Role="subjects" EntitySet="subjects" />
-            <End Role="subject_student" EntitySet="subject_student" />
-          </AssociationSet>
-          <AssociationSet Name="fk_subject_teacher_subject" Association="Self.fk_subject_teacher_subject">
-            <End Role="subjects" EntitySet="subjects" />
-            <End Role="subject_teacher" EntitySet="subject_teacher" />
-          </AssociationSet>
-          <AssociationSet Name="fk_subject_teacher_user" Association="Self.fk_subject_teacher_user">
-            <End Role="users" EntitySet="users" />
-            <End Role="subject_teacher" EntitySet="subject_teacher" />
-          </AssociationSet>
-          <AssociationSet Name="fk_visit_subject_teacher" Association="Self.fk_visit_subject_teacher">
-            <End Role="subject_teacher" EntitySet="subject_teacher" />
             <End Role="visits" EntitySet="visits" />
+          </AssociationSet>
+          <AssociationSet Name="subject_group" Association="Self.subject_group">
+            <End Role="groups" EntitySet="groups" />
+            <End Role="subjects" EntitySet="subjects" />
+          </AssociationSet>
+          <AssociationSet Name="subject_student" Association="Self.subject_student">
+            <End Role="students" EntitySet="students" />
+            <End Role="subjects" EntitySet="subjects" />
+          </AssociationSet>
+          <AssociationSet Name="subject_teacher" Association="Self.subject_teacher">
+            <End Role="subjects" EntitySet="subjects" />
+            <End Role="users" EntitySet="users" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -635,9 +530,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="KolledzDBModelStoreContainer" CdmEntityContainer="KolledzDBEntities">
+        <EntityContainerMapping StorageEntityContainer="KolledzDBStoreContainer" CdmEntityContainer="KolledzDBConn">
           <EntitySetMapping Name="groups">
-            <EntityTypeMapping TypeName="KolledzDBModel.group">
+            <EntityTypeMapping TypeName="KolledzDB.group">
               <MappingFragment StoreEntitySet="groups">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="group_code" ColumnName="group_code" />
@@ -645,7 +540,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="oppevorms">
-            <EntityTypeMapping TypeName="KolledzDBModel.oppevorm">
+            <EntityTypeMapping TypeName="KolledzDB.oppevorm">
               <MappingFragment StoreEntitySet="oppevorms">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="oppevorm1" ColumnName="oppevorm" />
@@ -653,7 +548,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="roles">
-            <EntityTypeMapping TypeName="KolledzDBModel.role">
+            <EntityTypeMapping TypeName="KolledzDB.role">
               <MappingFragment StoreEntitySet="roles">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -661,7 +556,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="students">
-            <EntityTypeMapping TypeName="KolledzDBModel.student">
+            <EntityTypeMapping TypeName="KolledzDB.student">
               <MappingFragment StoreEntitySet="students">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -672,35 +567,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="subject_group">
-            <EntityTypeMapping TypeName="KolledzDBModel.subject_group">
-              <MappingFragment StoreEntitySet="subject_group">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="subject_id" ColumnName="subject_id" />
-                <ScalarProperty Name="group_id" ColumnName="group_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="subject_student">
-            <EntityTypeMapping TypeName="KolledzDBModel.subject_student">
-              <MappingFragment StoreEntitySet="subject_student">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="subject_id" ColumnName="subject_id" />
-                <ScalarProperty Name="student_code" ColumnName="student_code" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="subject_teacher">
-            <EntityTypeMapping TypeName="KolledzDBModel.subject_teacher">
-              <MappingFragment StoreEntitySet="subject_teacher">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="subject_id" ColumnName="subject_id" />
-                <ScalarProperty Name="teacher_id" ColumnName="teacher_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="subjects">
-            <EntityTypeMapping TypeName="KolledzDBModel.subject">
+            <EntityTypeMapping TypeName="KolledzDB.subject">
               <MappingFragment StoreEntitySet="subjects">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="lekt" ColumnName="lekt" />
@@ -716,7 +584,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="KolledzDBModel.user">
+            <EntityTypeMapping TypeName="KolledzDB.user">
               <MappingFragment StoreEntitySet="users">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="email" ColumnName="email" />
@@ -729,17 +597,41 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="visits">
-            <EntityTypeMapping TypeName="KolledzDBModel.visit">
+            <EntityTypeMapping TypeName="KolledzDB.visit">
               <MappingFragment StoreEntitySet="visits">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="student_code" ColumnName="student_code" />
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="lesson_type" ColumnName="lesson_type" />
                 <ScalarProperty Name="paar_nr" ColumnName="paar_nr" />
-                <ScalarProperty Name="subject_teacher_id" ColumnName="subject_teacher_id" />
+                <ScalarProperty Name="subject_id" ColumnName="subject_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="subject_group" TypeName="KolledzDB.subject_group" StoreEntitySet="subject_group">
+            <EndProperty Name="groups">
+              <ScalarProperty Name="ID" ColumnName="group_id" />
+            </EndProperty>
+            <EndProperty Name="subjects">
+              <ScalarProperty Name="ID" ColumnName="subject_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="subject_student" TypeName="KolledzDB.subject_student" StoreEntitySet="subject_student">
+            <EndProperty Name="students">
+              <ScalarProperty Name="code" ColumnName="student_code" />
+            </EndProperty>
+            <EndProperty Name="subjects">
+              <ScalarProperty Name="ID" ColumnName="subject_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="subject_teacher" TypeName="KolledzDB.subject_teacher" StoreEntitySet="subject_teacher">
+            <EndProperty Name="subjects">
+              <ScalarProperty Name="ID" ColumnName="subject_id" />
+            </EndProperty>
+            <EndProperty Name="users">
+              <ScalarProperty Name="ID" ColumnName="teacher_id" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
