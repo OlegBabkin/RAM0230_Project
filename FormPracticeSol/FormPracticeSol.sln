@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BathhouseMngForm", "Bathhou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GasStationMngForm", "GasStationMngForm\GasStationMngForm.csproj", "{FC8EBC20-8F12-4D67-BC2C-133017EADC3E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GasStationMngFormTests", "GasStationMngFormTests\GasStationMngFormTests.csproj", "{88025773-AFF2-4C9E-B6BA-3EBBB411825C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{FC8EBC20-8F12-4D67-BC2C-133017EADC3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC8EBC20-8F12-4D67-BC2C-133017EADC3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC8EBC20-8F12-4D67-BC2C-133017EADC3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88025773-AFF2-4C9E-B6BA-3EBBB411825C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88025773-AFF2-4C9E-B6BA-3EBBB411825C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88025773-AFF2-4C9E-B6BA-3EBBB411825C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88025773-AFF2-4C9E-B6BA-3EBBB411825C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -54,7 +54,7 @@ namespace GasStationMngForm
             this.Close();
         }
 
-        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        public void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             price92ben.Text = petrol92Pr.ToString();
             price95ben.Text = petrol95Pr.ToString();

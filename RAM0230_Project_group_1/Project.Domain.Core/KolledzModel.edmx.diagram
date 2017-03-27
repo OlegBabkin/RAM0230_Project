@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f8207c1b2b8a4b14b3f81733a4ffe384" Name="Diagram1">
+        <EntityTypeShape EntityType="KolledzModel.Group" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KolledzModel.Oppevorm" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KolledzModel.Role" Width="1.5" PointX="8.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="KolledzModel.Student" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KolledzModel.Subject" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KolledzModel.User" Width="1.5" PointX="10.5" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KolledzModel.Visit" Width="1.5" PointX="7.5" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="KolledzModel.fk_student_group" ManuallyRouted="false" />
+        <AssociationConnector Association="KolledzModel.fk_student_oppevorm" ManuallyRouted="false" />
+        <AssociationConnector Association="KolledzModel.fk_subject_oppevorm" ManuallyRouted="false" />
+        <AssociationConnector Association="KolledzModel.fk_user_role" ManuallyRouted="false" />
+        <AssociationConnector Association="KolledzModel.fk_visit_student" ManuallyRouted="false" />
+        <AssociationConnector Association="KolledzModel.FK__visits__subject___6D9742D9" ManuallyRouted="false" />
+        <AssociationConnector Association="KolledzModel.Subject_group" ManuallyRouted="false" />
+        <AssociationConnector Association="KolledzModel.Subject_student" ManuallyRouted="false" />
+        <AssociationConnector Association="KolledzModel.Subject_teacher" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
