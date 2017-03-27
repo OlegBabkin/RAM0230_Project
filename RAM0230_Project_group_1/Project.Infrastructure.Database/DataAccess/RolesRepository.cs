@@ -7,41 +7,41 @@ using Project.Infrastructure.Database.Connection;
 
 namespace Project.Infrastructure.Database.DataAccess
 {
-    public class OppevormsRepository : IOppevormsRepository
+    public class RolesRepository : IRolesRepository
     {
         private KolledzDBContext context;
 
-        public OppevormsRepository(KolledzDBContext context)
+        public RolesRepository(KolledzDBContext context)
         {
             this.context = context;
         }
 
-        public void Delete(Oppevorm entity)
+        public void Delete(Role entity)
         {
-            this.context.Oppevorms.Remove(entity);
+            this.context.Roles.Remove(entity);
         }
 
-        public IQueryable<Oppevorm> FindBy(Expression<Func<Oppevorm, bool>> predicate)
+        public IQueryable<Role> FindBy(Expression<Func<Role, bool>> predicate)
         {
             return this.GetAllEntries().Where(predicate);
         }
 
-        public IQueryable<Oppevorm> GetAllEntries()
+        public IQueryable<Role> GetAllEntries()
         {
-            return this.context.Oppevorms.AsQueryable<Oppevorm>();
+            return this.context.Roles.AsQueryable<Role>();
         }
 
-        public Oppevorm GetByKey(int key)
+        public Role GetByKey(int key)
         {
-            return this.context.Oppevorms.FirstOrDefault(g => g.Id == key);
+            return this.context.Roles.FirstOrDefault(g => g.Id == key);
         }
 
-        public void Insert(Oppevorm entity)
+        public void Insert(Role entity)
         {
-            this.context.Oppevorms.Add(entity);
+            this.context.Roles.Add(entity);
         }
 
-        public void Update(Oppevorm entity)
+        public void Update(Role entity)
         {
             var oldEntry = this.GetByKey(entity.Id);
             if (oldEntry != null)

@@ -6,7 +6,7 @@ namespace Project.Domain.Repository
 {
     public interface IStudentsRepository : IBaseRepository<Student>, IGetByKey<Student, string>
     {
-        IQueryable<Subject> GetStudentSubjects();
-        IQueryable<Visit> GetStudentVisits();
+        IQueryable<Subject> GetStudentSubjects(Student student);
+        IQueryable<Visit> GetStudentVisits(Student student);
     }
 }

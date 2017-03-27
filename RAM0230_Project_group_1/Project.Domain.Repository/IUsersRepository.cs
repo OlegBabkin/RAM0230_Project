@@ -6,6 +6,6 @@ namespace Project.Domain.Repository
 {
     public interface IUsersRepository : IBaseRepository<User>, IGetByKey<User, int>
     {
-        IQueryable<Subject> GetTeacherSubjects();
+        IQueryable<Subject> GetTeacherSubjects(User user);
     }
 }

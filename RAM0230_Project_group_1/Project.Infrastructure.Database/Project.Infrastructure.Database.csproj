@@ -58,11 +58,14 @@
     <Compile Include="Connection\KolledzDBContext.cs" />
     <Compile Include="DataAccess\GroupsRepository.cs" />
     <Compile Include="DataAccess\OppevormsRepository.cs" />
+    <Compile Include="DataAccess\RolesRepository.cs" />
+    <Compile Include="DataAccess\StudentsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
