@@ -11,7 +11,7 @@ namespace Project.Infrastructure.Database.Connection
     public partial class KolledzDBContext : DbContext
     {
         public KolledzDBContext()
-            : base("metadata = res://*/KolledzModel.csdl|res://*/KolledzModel.ssdl|res://*/KolledzModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=www.vk.edu.ee;initial catalog=db_OlegB;user id=t160200ctf;password=t160200ctf;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient")
+            : base("name=KolledzDB")
         {
         }
         public KolledzDBContext(string connectionString) : base(connectionString) { }

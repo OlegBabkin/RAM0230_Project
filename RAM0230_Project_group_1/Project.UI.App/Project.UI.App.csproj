@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B220872E-0F27-4C76-8F18-A131DB5F4310}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{6899118C-15F1-41D0-8705-F3E52F3FAE87}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Project.Infrastructure.Database</RootNamespace>
-    <AssemblyName>Project.Infrastructure.Database</AssemblyName>
+    <RootNamespace>Project.UI.App</RootNamespace>
+    <AssemblyName>Project.UI.App</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -44,6 +47,9 @@
     <Reference Include="Project.Domain.Repository">
       <HintPath>..\Project.Domain.Repository\bin\Debug\Project.Domain.Repository.dll</HintPath>
     </Reference>
+    <Reference Include="Project.Infrastructure.Database">
+      <HintPath>..\Project.Infrastructure.Database\bin\Debug\Project.Infrastructure.Database.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -55,21 +61,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connection\KolledzDBContext.cs" />
-    <Compile Include="DataAccess\GroupsRepository.cs" />
-    <Compile Include="DataAccess\OppevormsRepository.cs" />
-    <Compile Include="DataAccess\RolesRepository.cs" />
-    <Compile Include="DataAccess\StudentsRepository.cs" />
-    <Compile Include="DataAccess\SubjectsRepository.cs" />
-    <Compile Include="DataAccess\UnitOfWork.cs" />
-    <Compile Include="DataAccess\UsersRepository.cs" />
-    <Compile Include="DataAccess\VisitsRepository.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="InfrastructureDatabase.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

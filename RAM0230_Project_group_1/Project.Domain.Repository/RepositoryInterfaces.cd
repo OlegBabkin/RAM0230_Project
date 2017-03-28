@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Interface Name="Project.Domain.Repository.Base.IBaseRepository&lt;T&gt;" Collapsed="true">
+    <Position X="6" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Base\IBaseRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Project.Domain.Repository.Base.ICUDRepository&lt;T&gt;">
+    <Position X="8.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Base\ICUDRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Project.Domain.Repository.Base.IGetByKey&lt;T, K&gt;">
+    <Position X="6" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Base\IGetByKey.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Project.Domain.Repository.Base.IReadRepository&lt;T&gt;">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Base\IReadRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Project.Domain.Repository.ISubjectsRepository">
+    <Position X="6" Y="3.75" Width="1.5" />
+    <InheritanceLine Type="Project.Domain.Repository.Base.IBaseRepository&lt;T&gt;" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="6.75" Y="3.2" />
+        <Point X="6.75" Y="3.282" />
+        <Point X="6.75" Y="3.282" />
+        <Point X="6.75" Y="3.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAgAEAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>ISubjectsRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Project.Domain.Repository.IUnitOfWork">
+    <Position X="8" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAIOAAAAAAAAQAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IUnitOfWork.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

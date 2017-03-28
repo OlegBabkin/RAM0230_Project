@@ -54,11 +54,6 @@
     <Compile Include="Group.cs">
       <DependentUpon>KolledzModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="KolledzModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>KolledzModel.Context.tt</DependentUpon>
-    </Compile>
     <Compile Include="KolledzModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

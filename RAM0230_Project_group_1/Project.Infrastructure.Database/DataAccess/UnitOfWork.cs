@@ -1,8 +1,5 @@
 ﻿using Project.Domain.Repository;
 using System;
-using System.Linq;
-using Project.Domain.Core;
-using System.Linq.Expressions;
 using Project.Infrastructure.Database.Connection;
 
 namespace Project.Infrastructure.Database.DataAccess
