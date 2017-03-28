@@ -60,6 +60,10 @@
     <Compile Include="DataAccess\OppevormsRepository.cs" />
     <Compile Include="DataAccess\RolesRepository.cs" />
     <Compile Include="DataAccess\StudentsRepository.cs" />
+    <Compile Include="DataAccess\SubjectsRepository.cs" />
+    <Compile Include="DataAccess\UnitOfWork.cs" />
+    <Compile Include="DataAccess\UsersRepository.cs" />
+    <Compile Include="DataAccess\VisitsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

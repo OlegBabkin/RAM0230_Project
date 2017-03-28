@@ -7,41 +7,47 @@ using Project.Infrastructure.Database.Connection;
 
 namespace Project.Infrastructure.Database.DataAccess
 {
-    public class RolesRepository : IRolesRepository
+    public class UsersRepository : IUsersRepository
     {
         private KolledzDBContext context;
 
-        public RolesRepository(KolledzDBContext context)
+        public UsersRepository(KolledzDBContext context)
         {
             this.context = context;
         }
 
-        public void Delete(Role entity)
+        public void Delete(User entity)
         {
-            this.context.Roles.Remove(entity);
+            this.context.Users.Remove(entity);
         }
 
-        public IQueryable<Role> FindBy(Expression<Func<Role, bool>> predicate)
+        public IQueryable<User> FindBy(Expression<Func<User, bool>> predicate)
         {
             return this.GetAllEntries().Where(predicate);
         }
 
-        public IQueryable<Role> GetAllEntries()
+        public IQueryable<User> GetAllEntries()
         {
-            return this.context.Roles.AsQueryable<Role>();
+            return this.context.Users.AsQueryable<User>();
         }
 
-        public Role GetByKey(int key)
+        public User GetByKey(int key)
         {
-            return this.context.Roles.FirstOrDefault(r => r.Id == key);
+            return this.context.Users.FirstOrDefault(u => u.Id == key);
         }
 
-        public void Insert(Role entity)
+        public IQueryable<Subject> GetTeacherSubjects(User user)
         {
-            this.context.Roles.Add(entity);
+            User s = this.GetByKey(user.Id);
+            return s.Subjects.AsQueryable<Subject>();
         }
 
-        public void Update(Role entity)
+        public void Insert(User entity)
+        {
+            this.context.Users.Add(entity);
+        }
+
+        public void Update(User entity)
         {
             var oldEntry = this.GetByKey(entity.Id);
             if (oldEntry != null)

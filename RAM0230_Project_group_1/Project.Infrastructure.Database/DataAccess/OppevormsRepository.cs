@@ -33,7 +33,7 @@ namespace Project.Infrastructure.Database.DataAccess
 
         public Oppevorm GetByKey(int key)
         {
-            return this.context.Oppevorms.FirstOrDefault(g => g.Id == key);
+            return this.context.Oppevorms.FirstOrDefault(o => o.Id == key);
         }
 
         public void Insert(Oppevorm entity)

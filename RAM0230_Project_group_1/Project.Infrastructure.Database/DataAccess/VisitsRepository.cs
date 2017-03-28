@@ -7,41 +7,41 @@ using Project.Infrastructure.Database.Connection;
 
 namespace Project.Infrastructure.Database.DataAccess
 {
-    public class RolesRepository : IRolesRepository
+    public class VisitsRepository : IVisitsRepository
     {
         private KolledzDBContext context;
 
-        public RolesRepository(KolledzDBContext context)
+        public VisitsRepository(KolledzDBContext context)
         {
             this.context = context;
         }
 
-        public void Delete(Role entity)
+        public void Delete(Visit entity)
         {
-            this.context.Roles.Remove(entity);
+            this.context.Visits.Remove(entity);
         }
 
-        public IQueryable<Role> FindBy(Expression<Func<Role, bool>> predicate)
+        public IQueryable<Visit> FindBy(Expression<Func<Visit, bool>> predicate)
         {
             return this.GetAllEntries().Where(predicate);
         }
 
-        public IQueryable<Role> GetAllEntries()
+        public IQueryable<Visit> GetAllEntries()
         {
-            return this.context.Roles.AsQueryable<Role>();
+            return this.context.Visits.AsQueryable<Visit>();
         }
 
-        public Role GetByKey(int key)
+        public Visit GetByKey(int key)
         {
-            return this.context.Roles.FirstOrDefault(r => r.Id == key);
+            return this.context.Visits.FirstOrDefault(v => v.Id == key);
         }
 
-        public void Insert(Role entity)
+        public void Insert(Visit entity)
         {
-            this.context.Roles.Add(entity);
+            this.context.Visits.Add(entity);
         }
 
-        public void Update(Role entity)
+        public void Update(Visit entity)
         {
             var oldEntry = this.GetByKey(entity.Id);
             if (oldEntry != null)
