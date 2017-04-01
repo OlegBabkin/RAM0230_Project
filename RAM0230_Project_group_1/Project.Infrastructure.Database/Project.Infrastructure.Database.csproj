@@ -57,7 +57,7 @@
   <ItemGroup>
     <Compile Include="Connection\KolledzDBContext.cs" />
     <Compile Include="DataAccess\GroupsRepository.cs" />
-    <Compile Include="DataAccess\OppevormsRepository.cs" />
+    <Compile Include="DataAccess\ModesOfStudyRepository.cs" />
     <Compile Include="DataAccess\RolesRepository.cs" />
     <Compile Include="DataAccess\StudentsRepository.cs" />
     <Compile Include="DataAccess\SubjectsRepository.cs" />

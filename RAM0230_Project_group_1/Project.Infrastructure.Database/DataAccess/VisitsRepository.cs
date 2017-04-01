@@ -36,6 +36,12 @@ namespace Project.Infrastructure.Database.DataAccess
             return this.context.Visits.FirstOrDefault(v => v.Id == key);
         }
 
+        public IQueryable<Student> GetStudentVisits(Visit visit)
+        {
+            Visit v = this.GetByKey(visit.Id);
+            return v.Students.AsQueryable<Student>();
+        }
+
         public void Insert(Visit entity)
         {
             this.context.Visits.Add(entity);

@@ -5,7 +5,7 @@ namespace Project.Domain.Repository
     public interface IUnitOfWork : IDisposable
     {
         IGroupsRepository Groups { get; }
-        IOppevormsRepository Oppevorms { get; }
+        IModeOfStudy ModesOfStudy { get; }
         IRolesRepository Roles { get; }
         IStudentsRepository Students { get; }
         ISubjectsRepository Subjects { get; }

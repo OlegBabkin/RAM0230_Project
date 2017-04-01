@@ -30,14 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -52,65 +44,63 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Group.cs">
-      <DependentUpon>KolledzModel.tt</DependentUpon>
+      <DependentUpon>KolledzDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="KolledzModel.cs">
+    <Compile Include="KolledzDBModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>KolledzModel.tt</DependentUpon>
+      <DependentUpon>KolledzDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="KolledzModel.Designer.cs">
+    <Compile Include="KolledzDBModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>KolledzModel.edmx</DependentUpon>
+      <DependentUpon>KolledzDBModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Oppevorm.cs">
-      <DependentUpon>KolledzModel.tt</DependentUpon>
+    <Compile Include="ModeOfStudy.cs">
+      <DependentUpon>KolledzDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs">
-      <DependentUpon>KolledzModel.tt</DependentUpon>
+      <DependentUpon>KolledzDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Student.cs">
-      <DependentUpon>KolledzModel.tt</DependentUpon>
+      <DependentUpon>KolledzDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Subject.cs">
-      <DependentUpon>KolledzModel.tt</DependentUpon>
+      <DependentUpon>KolledzDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>KolledzModel.tt</DependentUpon>
+      <DependentUpon>KolledzDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Visit.cs">
-      <DependentUpon>KolledzModel.tt</DependentUpon>
+      <DependentUpon>KolledzDBModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="KolledzModel.edmx">
+    <EntityDeploy Include="KolledzDBModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>KolledzModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>KolledzDBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config" />
-    <None Include="KolledzModel.edmx.diagram">
-      <DependentUpon>KolledzModel.edmx</DependentUpon>
+    <None Include="KolledzDBModel.edmx.diagram">
+      <DependentUpon>KolledzDBModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="KolledzModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>KolledzModel.edmx</DependentUpon>
-      <LastGenOutput>KolledzModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="KolledzModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>KolledzModel.edmx</DependentUpon>
-      <LastGenOutput>KolledzModel.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="KolledzDBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KolledzDBModel.edmx</DependentUpon>
+      <LastGenOutput>KolledzDBModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="KolledzDBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KolledzDBModel.edmx</DependentUpon>
+      <LastGenOutput>KolledzDBModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

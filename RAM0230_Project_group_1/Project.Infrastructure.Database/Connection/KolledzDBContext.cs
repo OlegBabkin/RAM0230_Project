@@ -17,7 +17,7 @@ namespace Project.Infrastructure.Database.Connection
         public KolledzDBContext(string connectionString) : base(connectionString) { }
 
         public virtual DbSet<Group> Groups { get; set; }
-        public virtual DbSet<Oppevorm> Oppevorms { get; set; }
+        public virtual DbSet<ModeOfStudy> ModesOfStudy { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }

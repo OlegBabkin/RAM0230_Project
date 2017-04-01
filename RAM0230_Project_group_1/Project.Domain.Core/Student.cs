@@ -17,22 +17,22 @@ namespace Project.Domain.Core
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Student()
         {
-            this.Visits = new HashSet<Visit>();
             this.Subjects = new HashSet<Subject>();
+            this.Visits = new HashSet<Visit>();
         }
     
         public string Code { get; set; }
         public string Name { get; set; }
         public string Lastname { get; set; }
-        public int OppevormId { get; set; }
+        public int ModeOfStudyId { get; set; }
         public string Email { get; set; }
         public int GroupId { get; set; }
     
         public virtual Group Group { get; set; }
-        public virtual Oppevorm Oppevorm { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Visit> Visits { get; set; }
+        public virtual ModeOfStudy ModeOfStudy { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Subject> Subjects { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Visit> Visits { get; set; }
     }
 }

@@ -14,14 +14,20 @@ namespace Project.Domain.Core
     
     public partial class Visit
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Visit()
+        {
+            this.Students = new HashSet<Student>();
+        }
+    
         public int Id { get; set; }
-        public string StudentCode { get; set; }
         public System.DateTime Date { get; set; }
-        public string Lesson_type { get; set; }
-        public Nullable<int> Paar_nr { get; set; }
+        public string LessonType { get; set; }
+        public Nullable<int> PairNumber { get; set; }
         public Nullable<int> SubjectId { get; set; }
     
-        public virtual Student Student { get; set; }
         public virtual Subject Subject { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Student> Students { get; set; }
     }
 }

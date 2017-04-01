@@ -12,7 +12,7 @@ namespace Project.UI.App
 {
     class Program
     {
-        private static IUnitOfWork context = new UnitOfWork(new KolledzDBContext());
+        private static IUnitOfWork uow = new UnitOfWork(new KolledzDBContext());
         static void Main(string[] args)
         {
             int sel;
@@ -24,19 +24,19 @@ namespace Project.UI.App
                 switch (sel)
                 {
                     case 1:
-                        foreach (var item in context.Users.GetAllEntries().ToList())
+                        foreach (var item in uow.Users.GetAllEntries().ToList())
                         {
                             Console.WriteLine("[{0}] {1} {2}. Role: {3}; Email: {4} ", item.Id, item.Name, item.Lastname, item.Role.Name, item.Email);
                         }
                         break;
                     case 2:
-                        foreach (var item in context.Users.GetAllEntries().ToList())
+                        foreach (var item in uow.Users.GetAllEntries().ToList())
                         {
                             Console.WriteLine("[{0}]", item.Email);
                         }
                         break;
                     case 3:
-                        foreach (var item in context.Users.FindBy(u => u.Role.Name.Equals("teacher")).ToList())
+                        foreach (var item in uow.Users.FindBy(u => u.Role.Name.Equals("teacher")).ToList())
                         {
                             Console.WriteLine("[{0}] {1} {2}. Role: {3};", item.Id, item.Name, item.Lastname, item.Role.Name);
                         }
@@ -49,19 +49,19 @@ namespace Project.UI.App
                         user.Lastname = Console.ReadLine();
                         user.Login = user.Name + user.Lastname;
                         user.Password = "12345678";
-                        user.Role = context.Roles.GetByKey(4);
+                        user.Role = uow.Roles.GetByKey(4);
                         user.Email = user.Name + user.Lastname + "@student.ee";
 
-                        context.Users.Insert(user);
-                        context.Save();
+                        uow.Users.Insert(user);
+                        uow.Save();
                         break;
                     case 5:
                         if (user == null) { Console.WriteLine("Nothing to delete!"); }
                         else
                         {
                             string str = String.Format("User: {0} {1} has been deleted", user.Name, user.Lastname);
-                            context.Users.Delete(user);
-                            context.Save();
+                            uow.Users.Delete(user);
+                            uow.Save();
                             user = null;
                         }
                         
@@ -70,9 +70,9 @@ namespace Project.UI.App
                         break;
                 }
             } while (sel != 0);
-            if (context != null)
+            if (uow != null)
             {
-                context.Dispose();
+                uow.Dispose();
             }
         }
 

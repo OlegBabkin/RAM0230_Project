@@ -48,7 +48,7 @@
     <Compile Include="Base\IGetByKey.cs" />
     <Compile Include="Base\IReadRepository.cs" />
     <Compile Include="IGroupsRepository.cs" />
-    <Compile Include="IOppevormsRepository.cs" />
+    <Compile Include="IModeOfStudy.cs" />
     <Compile Include="IRolesRepository.cs" />
     <Compile Include="IStudentsRepository.cs" />
     <Compile Include="ISubjectsRepository.cs" />

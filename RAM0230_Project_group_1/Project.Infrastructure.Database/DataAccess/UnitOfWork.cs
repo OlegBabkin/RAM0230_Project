@@ -11,7 +11,7 @@ namespace Project.Infrastructure.Database.DataAccess
 
         // Repositories
         private IGroupsRepository groupsRepository;
-        private IOppevormsRepository oppevormsRepository;
+        private IModeOfStudy modesOfStudyRepository;
         private IRolesRepository rolesRepository;
         private IStudentsRepository studentsRepository;
         private ISubjectsRepository subjectsRepository;
@@ -33,12 +33,12 @@ namespace Project.Infrastructure.Database.DataAccess
             }
         }
 
-        public IOppevormsRepository Oppevorms
+        public IModeOfStudy ModesOfStudy
         {
             get
             {
-                if (oppevormsRepository == null) { oppevormsRepository = new OppevormsRepository(context); }
-                return oppevormsRepository;
+                if (modesOfStudyRepository == null) { modesOfStudyRepository = new ModesOfStudyRepository(context); }
+                return modesOfStudyRepository;
             }
         }
 
