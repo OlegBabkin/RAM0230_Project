@@ -4,6 +4,7 @@ using System.Linq;
 using Project.Domain.Core;
 using System.Linq.Expressions;
 using Project.Infrastructure.Database.Connection;
+using System.Collections.Generic;
 
 namespace Project.Infrastructure.Database.DataAccess
 {
@@ -21,14 +22,14 @@ namespace Project.Infrastructure.Database.DataAccess
             this.context.Students.Remove(entity);
         }
 
-        public IQueryable<Student> FindBy(Expression<Func<Student, bool>> predicate)
+        public IEnumerable<Student> FindBy(Expression<Func<Student, bool>> predicate)
         {
-            return this.GetAllEntries().Where(predicate);
+            return this.context.Students.Where(predicate).ToList();
         }
 
-        public IQueryable<Student> GetAllEntries()
+        public IEnumerable<Student> GetAllEntries()
         {
-            return this.context.Students.AsQueryable<Student>();
+            return this.context.Students;
         }
 
         public Student GetByKey(string key)
@@ -36,16 +37,16 @@ namespace Project.Infrastructure.Database.DataAccess
             return this.context.Students.FirstOrDefault(s => s.Code == key);
         }
 
-        public IQueryable<Subject> GetStudentSubjects(Student student)
+        public IEnumerable<Subject> GetStudentSubjects(Student student)
         {
             Student s = this.GetByKey(student.Code);
-            return s.Subjects.AsQueryable<Subject>();
+            return s.Subjects;
         }
 
-        public IQueryable<Visit> GetStudentVisits(Student student)
+        public IEnumerable<Visit> GetStudentVisits(Student student)
         {
             Student s = this.GetByKey(student.Code);
-            return s.Visits.AsQueryable<Visit>();
+            return s.Visits;
         }
 
         public void Insert(Student entity)

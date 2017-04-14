@@ -66,6 +66,24 @@ namespace Project.UI.App
                         }
                         
                         break;
+
+                    case 6:
+                        foreach (var subject in uow.Subjects.GetAllEntries())
+                        {
+                            Console.WriteLine(subject.Code);
+                            foreach (var group in subject.Groups)
+                            {
+                                Console.WriteLine("\t" + group.GroupCode);
+                                foreach (var item in group.Students)
+                                {
+                                    Console.WriteLine("\t\t" + item.Code + "| " + item.Lastname);
+                                    subject.Students.Add(item);
+                                }
+                            }
+                        }
+                        //uow.Save();
+                        Console.WriteLine("all done!");
+                        break;
                     default:
                         break;
                 }
@@ -78,7 +96,7 @@ namespace Project.UI.App
 
         private static int UsersMenu()
         {
-            string[] menuItems = { "1. Show Users", "2. Show Emails", "3. Show Teachers", "4. Add User", "5. Delete User", "0. Exit" };
+            string[] menuItems = { "1. Show Users", "2. Show Emails", "3. Show Teachers", "4. Add User", "5. Delete User", "6. Update", "0. Exit" };
             Console.WriteLine();
             foreach (var item in menuItems)
             {

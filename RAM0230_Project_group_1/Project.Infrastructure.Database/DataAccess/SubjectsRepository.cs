@@ -4,6 +4,7 @@ using System.Linq;
 using Project.Domain.Core;
 using System.Linq.Expressions;
 using Project.Infrastructure.Database.Connection;
+using System.Collections.Generic;
 
 namespace Project.Infrastructure.Database.DataAccess
 {
@@ -21,14 +22,14 @@ namespace Project.Infrastructure.Database.DataAccess
             this.context.Subjects.Remove(entity);
         }
 
-        public IQueryable<Subject> FindBy(Expression<Func<Subject, bool>> predicate)
+        public IEnumerable<Subject> FindBy(Expression<Func<Subject, bool>> predicate)
         {
-            return this.GetAllEntries().Where(predicate);
+            return this.context.Subjects.Where(predicate).ToList();
         }
 
-        public IQueryable<Subject> GetAllEntries()
+        public IEnumerable<Subject> GetAllEntries()
         {
-            return this.context.Subjects.AsQueryable<Subject>();
+            return this.context.Subjects;
         }
 
         public Subject GetByKey(int key)
@@ -36,28 +37,28 @@ namespace Project.Infrastructure.Database.DataAccess
             return this.context.Subjects.FirstOrDefault(sb => sb.Id == key);
         }
 
-        public IQueryable<Group> GetSubjectGroups(Subject subject)
+        public IEnumerable<Group> GetSubjectGroups(Subject subject)
         {
             Subject sb = this.GetByKey(subject.Id);
-            return sb.Groups.AsQueryable<Group>();
+            return sb.Groups;
         }
 
-        public IQueryable<Student> GetSubjectStudents(Subject subject)
+        public IEnumerable<Student> GetSubjectStudents(Subject subject)
         {
             Subject sb = this.GetByKey(subject.Id);
-            return sb.Students.AsQueryable<Student>();
+            return sb.Students;
         }
 
-        public IQueryable<User> GetSubjectTeachers(Subject subject)
+        public IEnumerable<User> GetSubjectTeachers(Subject subject)
         {
             Subject sb = this.GetByKey(subject.Id);
-            return sb.Users.Where(u => u.Role.Name.Equals("teacher")).AsQueryable<User>();
+            return sb.Users.Where(u => u.Role.Name.Equals("teacher")).ToList();
         }
 
-        public IQueryable<Visit> GetSubjectVisits(Subject subject)
+        public IEnumerable<Visit> GetSubjectVisits(Subject subject)
         {
             Subject sb = this.GetByKey(subject.Id);
-            return sb.Visits.AsQueryable<Visit>();
+            return sb.Visits;
         }
 
         public void Insert(Subject entity)

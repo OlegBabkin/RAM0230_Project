@@ -1,14 +1,14 @@
 ﻿using Project.Domain.Core;
 using Project.Domain.Repository.Base;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace Project.Domain.Repository
 {
     public interface ISubjectsRepository : IBaseRepository<Subject>, IGetByKey<Subject, int>
     {
-        IQueryable<Visit> GetSubjectVisits(Subject subject);
-        IQueryable<Group> GetSubjectGroups(Subject subject);
-        IQueryable<Student> GetSubjectStudents(Subject subject);
-        IQueryable<User> GetSubjectTeachers(Subject subject);
+        IEnumerable<Visit> GetSubjectVisits(Subject subject);
+        IEnumerable<Group> GetSubjectGroups(Subject subject);
+        IEnumerable<Student> GetSubjectStudents(Subject subject);
+        IEnumerable<User> GetSubjectTeachers(Subject subject);
     }
 }

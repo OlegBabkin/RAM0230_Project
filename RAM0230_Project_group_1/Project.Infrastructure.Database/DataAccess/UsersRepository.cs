@@ -4,6 +4,7 @@ using System.Linq;
 using Project.Domain.Core;
 using System.Linq.Expressions;
 using Project.Infrastructure.Database.Connection;
+using System.Collections.Generic;
 
 namespace Project.Infrastructure.Database.DataAccess
 {
@@ -21,14 +22,14 @@ namespace Project.Infrastructure.Database.DataAccess
             this.context.Users.Remove(entity);
         }
 
-        public IQueryable<User> FindBy(Expression<Func<User, bool>> predicate)
+        public IEnumerable<User> FindBy(Expression<Func<User, bool>> predicate)
         {
-            return this.GetAllEntries().Where(predicate);
+            return this.context.Users.Where(predicate).ToList();
         }
 
-        public IQueryable<User> GetAllEntries()
+        public IEnumerable<User> GetAllEntries()
         {
-            return this.context.Users.AsQueryable<User>();
+            return this.context.Users;
         }
 
         public User GetByKey(int key)
@@ -36,10 +37,10 @@ namespace Project.Infrastructure.Database.DataAccess
             return this.context.Users.FirstOrDefault(u => u.Id == key);
         }
 
-        public IQueryable<Subject> GetTeacherSubjects(User user)
+        public IEnumerable<Subject> GetTeacherSubjects(User user)
         {
             User s = this.GetByKey(user.Id);
-            return s.Subjects.AsQueryable<Subject>();
+            return s.Subjects;
         }
 
         public void Insert(User entity)

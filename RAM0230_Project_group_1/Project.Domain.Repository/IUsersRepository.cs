@@ -1,11 +1,11 @@
 ﻿using Project.Domain.Core;
 using Project.Domain.Repository.Base;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace Project.Domain.Repository
 {
     public interface IUsersRepository : IBaseRepository<User>, IGetByKey<User, int>
     {
-        IQueryable<Subject> GetTeacherSubjects(User user);
+        IEnumerable<Subject> GetTeacherSubjects(User user);
     }
 }

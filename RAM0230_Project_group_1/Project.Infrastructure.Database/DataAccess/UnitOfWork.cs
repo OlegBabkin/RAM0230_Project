@@ -20,8 +20,12 @@ namespace Project.Infrastructure.Database.DataAccess
 
         public UnitOfWork(KolledzDBContext context)
         {
-            if (context == null) { throw new ArgumentNullException("DB context is missing!"); }
-            this.context = context;
+            this.context = context ?? throw new ArgumentNullException("DB context is missing!");
+        }
+
+        public UnitOfWork(string connectionString)
+        {
+            context = new KolledzDBContext(connectionString);
         }
 
         public IGroupsRepository Groups

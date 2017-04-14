@@ -4,6 +4,7 @@ using System.Linq;
 using Project.Domain.Core;
 using System.Linq.Expressions;
 using Project.Infrastructure.Database.Connection;
+using System.Collections.Generic;
 
 namespace Project.Infrastructure.Database.DataAccess
 {
@@ -21,14 +22,14 @@ namespace Project.Infrastructure.Database.DataAccess
             this.context.Groups.Remove(entity);
         }
 
-        public IQueryable<Group> FindBy(Expression<Func<Group, bool>> predicate)
+        public IEnumerable<Group> FindBy(Expression<Func<Group, bool>> predicate)
         {
-            return this.GetAllEntries().Where(predicate);
+            return this.context.Groups.Where(predicate).ToList();
         }
 
-        public IQueryable<Group> GetAllEntries()
+        public IEnumerable<Group> GetAllEntries()
         {
-            return this.context.Groups.AsQueryable<Group>();
+            return this.context.Groups;
         }
 
         public Group GetByKey(int key)
