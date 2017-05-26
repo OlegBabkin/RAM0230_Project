@@ -9,8 +9,11 @@ namespace Project.Infrastructure.Services.Interfaces
     public interface IAttendanceService
     {
         void MakeAttendanceList(VisitDTO visit, string[] selectedStudents);
-        void ChangeAttendanceList(VisitDTO visit, string[] students);
+        void ChangeAttendanceList(VisitDTO visit, string[] selectedStudents);
+        IEnumerable<TeacherDTO> GetTeachers();
         SubjectDTO GetSubject(int? subjectId);
+        IEnumerable<SubjectDTO> GetSubjects();
+        VisitDTO GetVisit(int? visitId);
         IEnumerable<VisitDTO> GetVisits();
         IEnumerable<TeacherDTO> GetSubjectTeachers(int? subjectId);
         IEnumerable<StudentDTO> GetSubjectStudents(int? subjectId);

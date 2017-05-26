@@ -8,51 +8,46 @@ using System.Collections.Generic;
 
 namespace Project.Infrastructure.Database.DataAccess
 {
-    public class GroupsRepository : IGroupsRepository
+    class SubjectTeachersRepository : ISubjectTeachersRepository
     {
         private KolledzDBContext context;
 
-        public GroupsRepository(KolledzDBContext context)
+        public SubjectTeachersRepository(KolledzDBContext context)
         {
             this.context = context;
         }
 
-        public void Delete(Group entity)
+        public void Delete(Subject_teacher entity)
         {
-            this.context.Groups.Remove(entity);
+            this.context.Subject_teacher.Remove(entity);
         }
 
-        public IEnumerable<Group> FindBy(Expression<Func<Group, bool>> predicate)
+        public IEnumerable<Subject_teacher> FindBy(Expression<Func<Subject_teacher, bool>> predicate)
         {
-            return this.context.Groups.Where(predicate).ToList();
+            return this.context.Subject_teacher.Where(predicate).ToList();
         }
 
-        public IEnumerable<Group> GetAllEntries()
+        public IEnumerable<Subject_teacher> GetAllEntries()
         {
-            return this.context.Groups;
+            return this.context.Subject_teacher;
         }
 
-        public IEnumerable<Student> GetGroupStudents(Group group)
+        public Subject_teacher GetByKey(int key)
         {
-            return this.GetByKey(group.Id).Students;
+            return this.context.Subject_teacher.FirstOrDefault(sb => sb.Id == key);
         }
 
-        public IEnumerable<Subject> GetGroupSubjects(Group group)
+        public IEnumerable<Visit> GetSubjectTeacherVisits(Subject_teacher subjectTeacher)
         {
-            return this.GetByKey(group.Id).Subjects;
+            return this.GetByKey(subjectTeacher.Id).Visits;
         }
 
-        public Group GetByKey(int key)
+        public void Insert(Subject_teacher entity)
         {
-            return this.context.Groups.FirstOrDefault(g => g.Id == key);
+            this.context.Subject_teacher.Add(entity);
         }
 
-        public void Insert(Group entity)
-        {
-            this.context.Groups.Add(entity);
-        }
-
-        public void Update(Group entity)
+        public void Update(Subject_teacher entity)
         {
             var oldEntry = this.GetByKey(entity.Id);
             if (oldEntry != null)

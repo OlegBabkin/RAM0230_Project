@@ -30,7 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Project.Domain.Core">
+    <Reference Include="Project.Domain.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Project.Domain.Core\bin\Debug\Project.Domain.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -52,6 +53,7 @@
     <Compile Include="IRolesRepository.cs" />
     <Compile Include="IStudentsRepository.cs" />
     <Compile Include="ISubjectsRepository.cs" />
+    <Compile Include="ISubjectTeachersRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="IUsersRepository.cs" />
     <Compile Include="IVisitsRepository.cs" />

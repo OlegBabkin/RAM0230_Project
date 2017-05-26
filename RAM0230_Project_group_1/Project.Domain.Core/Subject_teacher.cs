@@ -6,26 +6,26 @@ namespace Project.Domain.Core
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("kolledz.Groups")]
-    public partial class Group
+    [Table("kolledz.Subject_teacher")]
+    public partial class Subject_teacher
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Group()
+        public Subject_teacher()
         {
-            Students = new HashSet<Student>();
-            Subjects = new HashSet<Subject>();
+            Visits = new HashSet<Visit>();
         }
 
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(6)]
-        public string GroupCode { get; set; }
+        public int SubjectId { get; set; }
+
+        public int TeacherId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Student> Students { get; set; }
+        public virtual ICollection<Visit> Visits { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Subject> Subjects { get; set; }
+        public virtual Subject Subject { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

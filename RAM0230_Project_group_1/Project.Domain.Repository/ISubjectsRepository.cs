@@ -6,9 +6,8 @@ namespace Project.Domain.Repository
 {
     public interface ISubjectsRepository : IBaseRepository<Subject>, IGetByKey<Subject, int>
     {
-        IEnumerable<Visit> GetSubjectVisits(Subject subject);
         IEnumerable<Group> GetSubjectGroups(Subject subject);
         IEnumerable<Student> GetSubjectStudents(Subject subject);
-        IEnumerable<User> GetSubjectTeachers(Subject subject);
+        IEnumerable<Subject_teacher> GetSubjectTeachers(Subject subject);
     }
 }

@@ -37,10 +37,9 @@ namespace Project.Infrastructure.Database.DataAccess
             return this.context.Users.FirstOrDefault(u => u.Id == key);
         }
 
-        public IEnumerable<Subject> GetTeacherSubjects(User user)
+        public IEnumerable<Subject_teacher> GetTeacherSubjects(User user)
         {
-            User s = this.GetByKey(user.Id);
-            return s.Subjects;
+            return this.GetByKey(user.Id).Subject_teacher;
         }
 
         public void Insert(User entity)

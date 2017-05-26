@@ -1,14 +1,11 @@
-﻿@model IEnumerable<Project.UI.WebMVCApp.Models.IndexVisitViewModel>
+﻿@model IEnumerable<Project.UI.WebMVCApp.Models.VisitViewModels.IndexVisitViewModel>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
 <table class="table">
     <tr>
         <th>

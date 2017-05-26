@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
+using Project.Infrastructure.DTO.Subject;
+using Project.Infrastructure.DTO.User;
 using Project.Infrastructure.DTO.Visit;
 using Project.Infrastructure.Services.Interfaces;
 using Project.UI.WebMVCApp.Models;
+using Project.UI.WebMVCApp.Models.VisitViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +24,10 @@ namespace Project.UI.WebMVCApp.Controllers
             IEnumerable<VisitDTO> visitDtos = service.GetVisits();
             Mapper.Initialize(cfg => cfg.CreateMap<VisitDTO, IndexVisitViewModel>());
             var visits = Mapper.Map<IEnumerable<VisitDTO>, List<IndexVisitViewModel>>(visitDtos);
-            ViewBag.Visits = visits;
+            //SelectList subjects = new SelectList(service.GetSubjects(), "Id", "Title");
+
+            ViewBag.Title = "Students attendance control page";
+            //ViewBag.Subjects = subjects;
             return View(visits);
         }
 
@@ -34,6 +40,7 @@ namespace Project.UI.WebMVCApp.Controllers
         // GET: Visits/Create
         public ActionResult Create()
         {
+            
             return View();
         }
 
@@ -52,6 +59,16 @@ namespace Project.UI.WebMVCApp.Controllers
                 return View();
             }
         }
+
+        //public ActionResult PartialCreateTeachers()
+        //{
+        //    IEnumerable<TeacherDTO> teacherDtos = service.GetTeachers();
+        //    Mapper.Initialize(cfg => cfg.CreateMap<TeacherDTO, PartialTeachersVisitViewModel>()
+        //        .ForMember("TeacherId", opt => opt.MapFrom(src1 => src1.Id))
+        //        .ForMember("TeacherInfo", opt => opt.MapFrom(src2 => "[" + src2.Id + "]" + " " + src2.Name + " " + src2.Lastname)));
+        //    //SelectList teachersList = 
+        //    return PartialView();
+        //}
 
         // GET: Visits/Edit/5
         public ActionResult Edit(int id)

@@ -49,16 +49,10 @@ namespace Project.Infrastructure.Database.DataAccess
             return sb.Students;
         }
 
-        public IEnumerable<User> GetSubjectTeachers(Subject subject)
+        public IEnumerable<Subject_teacher> GetSubjectTeachers(Subject subject)
         {
             Subject sb = this.GetByKey(subject.Id);
-            return sb.Users.Where(u => u.Role.Name.Equals("teacher")).ToList();
-        }
-
-        public IEnumerable<Visit> GetSubjectVisits(Subject subject)
-        {
-            Subject sb = this.GetByKey(subject.Id);
-            return sb.Visits;
+            return sb.Subject_teacher;
         }
 
         public void Insert(Subject entity)

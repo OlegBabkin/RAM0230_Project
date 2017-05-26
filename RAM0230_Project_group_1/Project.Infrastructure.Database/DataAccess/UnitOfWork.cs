@@ -15,6 +15,7 @@ namespace Project.Infrastructure.Database.DataAccess
         private IRolesRepository rolesRepository;
         private IStudentsRepository studentsRepository;
         private ISubjectsRepository subjectsRepository;
+        private ISubjectTeachersRepository subjectTeachersRepository;
         private IUsersRepository usersRepository;
         private IVisitsRepository visitsRepository;
 
@@ -28,6 +29,7 @@ namespace Project.Infrastructure.Database.DataAccess
             context = new KolledzDBContext(connectionString);
         }
 
+        // Properties
         public IGroupsRepository Groups
         {
             get
@@ -70,6 +72,15 @@ namespace Project.Infrastructure.Database.DataAccess
             {
                 if (subjectsRepository == null) { subjectsRepository = new SubjectsRepository(context); }
                 return subjectsRepository;
+            }
+        }
+
+        public ISubjectTeachersRepository SubjectTeachers
+        {
+            get
+            {
+                if (subjectTeachersRepository == null) { subjectTeachersRepository = new SubjectTeachersRepository(context); }
+                return subjectTeachersRepository;
             }
         }
 

@@ -19,27 +19,37 @@ namespace Project.Infrastructure.Database.DataAccess
 
         public void Delete(ModeOfStudy entity)
         {
-            this.context.ModesOfStudy.Remove(entity);
+            this.context.ModeOfStudies.Remove(entity);
         }
 
         public IEnumerable<ModeOfStudy> FindBy(Expression<Func<ModeOfStudy, bool>> predicate)
         {
-            return this.context.ModesOfStudy.Where(predicate).ToList();
+            return this.context.ModeOfStudies.Where(predicate).ToList();
         }
 
         public IEnumerable<ModeOfStudy> GetAllEntries()
         {
-            return this.context.ModesOfStudy;
+            return this.context.ModeOfStudies;
+        }
+
+        public IEnumerable<Student> GetModeOfStudyStudents(ModeOfStudy modeOfStudy)
+        {
+            return this.GetByKey(modeOfStudy.Id).Students;
+        }
+
+        public IEnumerable<Subject> GetModeOfStudySubjects(ModeOfStudy modeOfStudy)
+        {
+            return this.GetByKey(modeOfStudy.Id).Subjects;
         }
 
         public ModeOfStudy GetByKey(int key)
         {
-            return this.context.ModesOfStudy.FirstOrDefault(o => o.Id == key);
+            return this.context.ModeOfStudies.FirstOrDefault(o => o.Id == key);
         }
 
         public void Insert(ModeOfStudy entity)
         {
-            this.context.ModesOfStudy.Add(entity);
+            this.context.ModeOfStudies.Add(entity);
         }
 
         public void Update(ModeOfStudy entity)

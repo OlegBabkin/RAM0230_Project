@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Project.UI.WebMVCApp.Models
+namespace Project.UI.WebMVCApp.Models.VisitViewModels
 {
     public class IndexVisitViewModel
     {
@@ -19,6 +19,9 @@ namespace Project.UI.WebMVCApp.Models
 
         [Display(Name = "Pair number")]
         public int? PairNumber { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public int SubjectId { get; set; }
 
         [Display(Name = "Subject title")]
         public string SubjectTitle { get; set; }

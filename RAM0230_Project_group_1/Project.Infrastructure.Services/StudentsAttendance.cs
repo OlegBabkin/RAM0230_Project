@@ -18,11 +18,40 @@ namespace Project.Infrastructure.Services
 
         public StudentsAttendance(IUnitOfWork uow) { Uow = uow; }
 
+        public IEnumerable<TeacherDTO> GetTeachers()
+        {
+            Mapper.Initialize(config => config.CreateMap<User, TeacherDTO>());
+            return Mapper.Map<IEnumerable<User>, List<TeacherDTO>>(Uow.Users.FindBy(u => u.Role.Name.Equals("teacher")));
+        }
+
+        public VisitDTO GetVisit(int? visitId)
+        {
+            var visit = ValidateVisit(visitId);
+
+            Mapper.Initialize(config => config.CreateMap<Visit, VisitDTO>());
+            return Mapper.Map<Visit, VisitDTO>(visit);
+        }
+
         public IEnumerable<VisitDTO> GetVisits()
         {
             Mapper.Initialize(config => config.CreateMap<Visit, VisitDTO>()
                 .ForMember("SubjectTitle", option => option.MapFrom(st => st.Subject.Title)));
             return Mapper.Map<IEnumerable<Visit>, List<VisitDTO>>(Uow.Visits.GetAllEntries());
+        }
+
+        public SubjectDTO GetSubject(int? subjectId)
+        {
+            var subject = ValidateSubject(subjectId);
+
+            Mapper.Initialize(config => config.CreateMap<Subject, SubjectDTO>());
+            return Mapper.Map<Subject, SubjectDTO>(subject);
+        }
+
+        public IEnumerable<SubjectDTO> GetSubjects()
+        {
+            Mapper.Initialize(config => config.CreateMap<Subject, SubjectDTO>()
+               .ForMember("ModeOfStudyName", option => option.MapFrom(sb => sb.ModeOfStudy.Name)));
+            return Mapper.Map<IEnumerable<Subject>, List<SubjectDTO>>(Uow.Subjects.GetAllEntries());
         }
 
         public IEnumerable<StudentDTO> GetSubjectStudents(int? subjectId)
@@ -39,14 +68,6 @@ namespace Project.Infrastructure.Services
 
             Mapper.Initialize(config => config.CreateMap<User, TeacherDTO>());
             return Mapper.Map<IEnumerable<User>, List<TeacherDTO>>(Uow.Subjects.GetSubjectTeachers(subject));
-        }
-
-        public SubjectDTO GetSubject(int? subjectId)
-        {
-            var subject = ValidateSubject(subjectId);
-
-            Mapper.Initialize(config => config.CreateMap<Subject, SubjectDTO>());
-            return Mapper.Map<Subject, SubjectDTO>(subject);
         }
 
         public void MakeAttendanceList(VisitDTO visit, string[] selectedStudents)
@@ -94,6 +115,16 @@ namespace Project.Infrastructure.Services
             if (subject == null) { throw new ValidationException("Subject not found", ""); }
 
             return subject;
+        }
+
+        private Visit ValidateVisit(int? visitId)
+        {
+            if (visitId == null) { throw new ValidationException("Visit ID is not presented", ""); }
+
+            Visit visit = Uow.Visits.GetByKey(visitId.Value);
+            if (visit == null) { throw new ValidationException("Visit not found", ""); }
+
+            return visit;
         }
 
         public void Dispose()

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Project.Infrastructure.DTO.Visit;
 using Project.Infrastructure.Services.Interfaces;
-using Project.UI.WebMVCApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

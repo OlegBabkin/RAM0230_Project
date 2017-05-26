@@ -11,6 +11,7 @@
         public decimal? PracticeHours { get; set; }
         public decimal? ExercisesHours { get; set; }
         public int ModeOfStudyId { get; set; }
+        public string ModeOfStudyName { get; set; }
         public string Language { get; set; }
     }
 }

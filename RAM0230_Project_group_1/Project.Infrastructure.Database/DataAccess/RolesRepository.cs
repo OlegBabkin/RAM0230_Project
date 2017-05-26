@@ -32,6 +32,11 @@ namespace Project.Infrastructure.Database.DataAccess
             return this.context.Roles;
         }
 
+        public IEnumerable<User> GetRoleUsers(Role role)
+        {
+            return this.GetByKey(role.Id).Users;
+        }
+
         public Role GetByKey(int key)
         {
             return this.context.Roles.FirstOrDefault(r => r.Id == key);
