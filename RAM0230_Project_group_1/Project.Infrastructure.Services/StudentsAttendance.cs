@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using Project.Domain.Core;
 using Project.Domain.Repository;
-using Project.Infrastructure.DTO.Student;
-using Project.Infrastructure.DTO.Subject;
-using Project.Infrastructure.DTO.User;
-using Project.Infrastructure.DTO.Visit;
+using Project.Infrastructure.DTO;
 using Project.Infrastructure.Services.Interfaces;
 using Project.Infrastructure.Services.Validation;
 using System;
@@ -18,9 +15,9 @@ namespace Project.Infrastructure.Services
 
         public StudentsAttendance(IUnitOfWork uow) { Uow = uow; }
 
-        public IEnumerable<TeacherDTO> GetTeachers()
+        public IEnumerable<UserDTO> GetTeachers()
         {
-            Mapper.Initialize(config => config.CreateMap<User, TeacherDTO>());
+            Mapper.Initialize(config => config.CreateMap<User, UserDTO>());
             return Mapper.Map<IEnumerable<User>, List<TeacherDTO>>(Uow.Users.FindBy(u => u.Role.Name.Equals("teacher")));
         }
 
@@ -62,11 +59,11 @@ namespace Project.Infrastructure.Services
             return Mapper.Map<IEnumerable<Student>, List<StudentDTO>>(Uow.Subjects.GetSubjectStudents(subject));
         }
 
-        public IEnumerable<TeacherDTO> GetSubjectTeachers(int? subjectId)
+        public IEnumerable<UserDTO> GetSubjectTeachers(int? subjectId)
         {
             var subject = ValidateSubject(subjectId);
 
-            Mapper.Initialize(config => config.CreateMap<User, TeacherDTO>());
+            Mapper.Initialize(config => config.CreateMap<User, UserDTO>());
             return Mapper.Map<IEnumerable<User>, List<TeacherDTO>>(Uow.Subjects.GetSubjectTeachers(subject));
         }
 

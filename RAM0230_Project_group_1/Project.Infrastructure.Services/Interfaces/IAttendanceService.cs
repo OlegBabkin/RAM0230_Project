@@ -1,8 +1,5 @@
-﻿using Project.Infrastructure.DTO.User;
-using Project.Infrastructure.DTO.Subject;
-using Project.Infrastructure.DTO.Visit;
-using System.Collections.Generic;
-using Project.Infrastructure.DTO.Student;
+﻿using System.Collections.Generic;
+using Project.Infrastructure.DTO;
 
 namespace Project.Infrastructure.Services.Interfaces
 {
@@ -10,12 +7,12 @@ namespace Project.Infrastructure.Services.Interfaces
     {
         void MakeAttendanceList(VisitDTO visit, string[] selectedStudents);
         void ChangeAttendanceList(VisitDTO visit, string[] selectedStudents);
-        IEnumerable<TeacherDTO> GetTeachers();
+        IEnumerable<UserDTO> GetTeachers();
         SubjectDTO GetSubject(int? subjectId);
         IEnumerable<SubjectDTO> GetSubjects();
         VisitDTO GetVisit(int? visitId);
         IEnumerable<VisitDTO> GetVisits();
-        IEnumerable<TeacherDTO> GetSubjectTeachers(int? subjectId);
+        IEnumerable<UserDTO> GetSubjectTeachers(int? subjectId);
         IEnumerable<StudentDTO> GetSubjectStudents(int? subjectId);
         void Dispose();
     }

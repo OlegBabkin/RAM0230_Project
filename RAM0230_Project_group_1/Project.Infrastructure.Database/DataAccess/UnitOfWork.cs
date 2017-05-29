@@ -21,7 +21,8 @@ namespace Project.Infrastructure.Database.DataAccess
 
         public UnitOfWork(KolledzDBContext context)
         {
-            this.context = context ?? throw new ArgumentNullException("DB context is missing!");
+            if (context == null) { throw new ArgumentNullException("DB context is missing!"); }
+            this.context = context;
         }
 
         public UnitOfWork(string connectionString)
