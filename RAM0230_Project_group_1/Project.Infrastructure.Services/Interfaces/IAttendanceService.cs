@@ -12,7 +12,7 @@ namespace Project.Infrastructure.Services.Interfaces
         IEnumerable<SubjectDTO> GetSubjects();
         VisitDTO GetVisit(int? visitId);
         IEnumerable<VisitDTO> GetVisits();
-        IEnumerable<UserDTO> GetSubjectTeachers(int? subjectId);
+        IEnumerable<SubjectTeacherDTO> GetSubjectTeachers(int? subjectId);
         IEnumerable<StudentDTO> GetSubjectStudents(int? subjectId);
         void Dispose();
     }

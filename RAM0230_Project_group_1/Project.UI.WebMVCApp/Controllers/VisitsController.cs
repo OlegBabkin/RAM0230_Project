@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using Project.Infrastructure.DTO.Subject;
-using Project.Infrastructure.DTO.User;
-using Project.Infrastructure.DTO.Visit;
+using Project.Infrastructure.DTO;
 using Project.Infrastructure.Services.Interfaces;
 using Project.UI.WebMVCApp.Models;
 using Project.UI.WebMVCApp.Models.VisitViewModels;

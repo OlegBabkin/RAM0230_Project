@@ -17,8 +17,9 @@ namespace Project.Infrastructure.Services
 
         public IEnumerable<UserDTO> GetTeachers()
         {
-            Mapper.Initialize(config => config.CreateMap<User, UserDTO>());
-            return Mapper.Map<IEnumerable<User>, List<TeacherDTO>>(Uow.Users.FindBy(u => u.Role.Name.Equals("teacher")));
+            Mapper.Initialize(config => config.CreateMap<User, UserDTO>()
+                .ForMember("SubjectTeacherDTOs", opt => opt.MapFrom(u => u.Subject_teacher)));
+            return Mapper.Map<IEnumerable<User>, List<UserDTO>>(Uow.Users.FindBy(u => u.Role.Name.Equals("teacher")));
         }
 
         public VisitDTO GetVisit(int? visitId)
@@ -31,8 +32,9 @@ namespace Project.Infrastructure.Services
 
         public IEnumerable<VisitDTO> GetVisits()
         {
-            Mapper.Initialize(config => config.CreateMap<Visit, VisitDTO>()
-                .ForMember("SubjectTitle", option => option.MapFrom(st => st.Subject.Title)));
+            Mapper.Initialize(cfg => cfg.CreateMap<Visit, VisitDTO>());
+                //.ForMember(dest => dest.StudentDTOs, opt => opt.MapFrom(src => src.Students)));
+            Mapper.AssertConfigurationIsValid();
             return Mapper.Map<IEnumerable<Visit>, List<VisitDTO>>(Uow.Visits.GetAllEntries());
         }
 
@@ -46,8 +48,7 @@ namespace Project.Infrastructure.Services
 
         public IEnumerable<SubjectDTO> GetSubjects()
         {
-            Mapper.Initialize(config => config.CreateMap<Subject, SubjectDTO>()
-               .ForMember("ModeOfStudyName", option => option.MapFrom(sb => sb.ModeOfStudy.Name)));
+            Mapper.Initialize(config => config.CreateMap<Subject, SubjectDTO>());
             return Mapper.Map<IEnumerable<Subject>, List<SubjectDTO>>(Uow.Subjects.GetAllEntries());
         }
 
@@ -59,12 +60,12 @@ namespace Project.Infrastructure.Services
             return Mapper.Map<IEnumerable<Student>, List<StudentDTO>>(Uow.Subjects.GetSubjectStudents(subject));
         }
 
-        public IEnumerable<UserDTO> GetSubjectTeachers(int? subjectId)
+        public IEnumerable<SubjectTeacherDTO> GetSubjectTeachers(int? subjectId)
         {
             var subject = ValidateSubject(subjectId);
 
-            Mapper.Initialize(config => config.CreateMap<User, UserDTO>());
-            return Mapper.Map<IEnumerable<User>, List<TeacherDTO>>(Uow.Subjects.GetSubjectTeachers(subject));
+            Mapper.Initialize(config => config.CreateMap<Subject_teacher, SubjectTeacherDTO>());
+            return Mapper.Map<IEnumerable<Subject_teacher>, List<SubjectTeacherDTO>>(Uow.SubjectTeachers.FindBy(st => st.SubjectId == subject.Id));
         }
 
         public void MakeAttendanceList(VisitDTO visit, string[] selectedStudents)
@@ -83,7 +84,7 @@ namespace Project.Infrastructure.Services
 
         private Visit MakeVisit(VisitDTO visit, string[] selectedStudents)
         {
-            var subject = ValidateSubject(visit.SubjectId);
+            var subject = ValidateSubject(visit.Subject_Techer_Id);
 
             if (selectedStudents == null) { throw new ValidationException("Students list is empty or not exists", ""); }
 
@@ -92,7 +93,7 @@ namespace Project.Infrastructure.Services
                 Date = DateTime.Now,
                 LessonType = visit.LessonType,
                 PairNumber = visit.PairNumber,
-                SubjectId = subject.Id
+                Subject_Techer_Id = visit.Subject_Techer_Id
             };
             visitEntity.Students.Clear();
             foreach (var item in selectedStudents)

@@ -7,6 +7,6 @@ namespace Project.Infrastructure.DTO
         public int Id { get; set; }
         public SubjectDTO SubjectDTO { get; set; }
         public UserDTO UserDTO { get; set; }
-        public IEnumerable<VisitDTO> VisitDTOs { get; set; }
+        //public IEnumerable<VisitDTO> VisitDTOs { get; set; }
     }
 }

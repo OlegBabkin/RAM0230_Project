@@ -9,7 +9,7 @@ namespace Project.Infrastructure.DTO
         public DateTime? Date { get; set; }
         public string LessonType { get; set; }
         public int? PairNumber { get; set; }
-        public SubjectTeacherDTO SubjectTeacherDTO { get; set; }
-        public IEnumerable<StudentDTO> StudentDTOs { get; set; }
+        public int Subject_Techer_Id { get; set; }
+        //public IEnumerable<StudentDTO> StudentDTOs { get; set; }
     }
 }

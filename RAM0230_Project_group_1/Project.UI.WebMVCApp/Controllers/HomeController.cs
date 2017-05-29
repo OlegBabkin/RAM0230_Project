@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Project.Infrastructure.DTO.Visit;
+using Project.Infrastructure.DTO;
 using Project.Infrastructure.Services.Interfaces;
 using System;
 using System.Collections.Generic;

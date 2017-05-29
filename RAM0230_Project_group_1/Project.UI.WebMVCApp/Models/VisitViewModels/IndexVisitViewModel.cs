@@ -12,7 +12,7 @@ namespace Project.UI.WebMVCApp.Models.VisitViewModels
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
 
-        public System.DateTime? Date { get; set; }
+        public DateTime? Date { get; set; }
 
         [Display(Name = "Lesson type")]
         public string LessonType { get; set; }
@@ -21,9 +21,6 @@ namespace Project.UI.WebMVCApp.Models.VisitViewModels
         public int? PairNumber { get; set; }
 
         [HiddenInput(DisplayValue = false)]
-        public int SubjectId { get; set; }
-
-        [Display(Name = "Subject title")]
-        public string SubjectTitle { get; set; }
+        public int Subject_Techer_Id { get; set; }
     }
 }
