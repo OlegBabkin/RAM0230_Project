@@ -4,9 +4,9 @@ using Project.Domain.Core;
 
 namespace Project.UI.WebMVCApp.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
-        [Authorize]
         public ActionResult Index()
         {
             ViewBag.Message = "Your application home page.";

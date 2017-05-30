@@ -13,6 +13,7 @@ using Project.Domain.Repository;
 
 namespace Project.UI.WebMVCApp.Controllers
 {
+    [Authorize]
     public class VisitsController : Controller
     {
         private IUnitOfWork uow;
