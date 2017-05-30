@@ -44,8 +44,8 @@ namespace Project.UI.WebMVCApp.App_Start
         private static IKernel CreateKernel()
         {
             // Set connection string
-            var modules = new INinjectModule[] { new ServiceModule("name=KolledzDB") };
-            var kernel = new StandardKernel(modules);
+            // var modules = new INinjectModule[] { new ServiceModule("name=KolledzDB") };
+            var kernel = new StandardKernel();
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);

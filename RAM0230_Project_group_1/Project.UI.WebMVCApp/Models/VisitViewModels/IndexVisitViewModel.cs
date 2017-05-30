@@ -22,5 +22,11 @@ namespace Project.UI.WebMVCApp.Models.VisitViewModels
 
         [HiddenInput(DisplayValue = false)]
         public int Subject_Techer_Id { get; set; }
+
+        [Display(Name = "Teacher")]
+        public string TeacherName { get; set; }
+
+        [Display(Name = "Subject")]
+        public string SubjectName { get; set; }
     }
 }

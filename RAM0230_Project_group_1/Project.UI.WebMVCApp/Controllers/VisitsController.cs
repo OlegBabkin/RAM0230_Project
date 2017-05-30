@@ -3,29 +3,31 @@ using Project.Infrastructure.DTO;
 using Project.Infrastructure.Services.Interfaces;
 using Project.UI.WebMVCApp.Models;
 using Project.UI.WebMVCApp.Models.VisitViewModels;
+using Project.Domain.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Project.Domain.Repository;
 
 namespace Project.UI.WebMVCApp.Controllers
 {
     public class VisitsController : Controller
     {
-        IAttendanceService service;
-        public VisitsController(IAttendanceService service) { this.service = service; }
+        private IUnitOfWork uow;
+        public VisitsController(IUnitOfWork uow) { this.uow = uow; }
 
         // GET: Visits
         public ActionResult Index()
         {
-            IEnumerable<VisitDTO> visitDtos = service.GetVisits();
-            Mapper.Initialize(cfg => cfg.CreateMap<VisitDTO, IndexVisitViewModel>());
-            var visits = Mapper.Map<IEnumerable<VisitDTO>, List<IndexVisitViewModel>>(visitDtos);
-            //SelectList subjects = new SelectList(service.GetSubjects(), "Id", "Title");
+            Mapper.Initialize(cfg => cfg.CreateMap<Visit, IndexVisitViewModel>()
+                .ForMember(dest => dest.TeacherName, opt => opt.MapFrom(src => src.Subject_teacher.User.Name + " " + src.Subject_teacher.User.Lastname))
+                .ForMember(dest => dest.SubjectName, opt => opt.MapFrom(src => src.Subject_teacher.Subject.Title)));
+
+            var visits = Mapper.Map<IEnumerable<Visit>, List<IndexVisitViewModel>>(uow.Visits.GetAllEntries());
 
             ViewBag.Title = "Students attendance control page";
-            //ViewBag.Subjects = subjects;
             return View(visits);
         }
 

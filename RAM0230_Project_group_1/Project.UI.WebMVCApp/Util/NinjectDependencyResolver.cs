@@ -1,6 +1,6 @@
 ﻿using Ninject;
-using Project.Infrastructure.Services;
-using Project.Infrastructure.Services.Interfaces;
+using Project.Domain.Repository;
+using Project.Infrastructure.Database.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -28,7 +28,7 @@ namespace Project.UI.WebMVCApp.Util
 
         private void AddBindings()
         {
-            kernel.Bind<IAttendanceService>().To<StudentsAttendance>();
+            kernel.Bind<IUnitOfWork>().To<UnitOfWork>().WithConstructorArgument("connectionString", "name=KolledzDB");
         }
     }
 }
