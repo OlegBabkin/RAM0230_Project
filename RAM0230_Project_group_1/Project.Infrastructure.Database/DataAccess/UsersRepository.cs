@@ -27,6 +27,11 @@ namespace Project.Infrastructure.Database.DataAccess
             return this.context.Users.Where(predicate).ToList();
         }
 
+        public User FindUser(Expression<Func<User, bool>> predicate)
+        {
+            return this.context.Users.FirstOrDefault(predicate);
+        }
+
         public IEnumerable<User> GetAllEntries()
         {
             return this.context.Users;

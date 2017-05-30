@@ -1,34 +1,30 @@
-﻿using AutoMapper;
-using Project.Infrastructure.DTO;
-using Project.Infrastructure.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using Project.UI.WebMVCApp.Models;
+using Project.Domain.Core;
 
 namespace Project.UI.WebMVCApp.Controllers
 {
     public class HomeController : Controller
     {
-        
+        [Authorize]
         public ActionResult Index()
         {
             ViewBag.Message = "Your application home page.";
 
             return View();
         }
-
+        [Authorize(Roles = "teacher")]
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = User.Identity.GetUserRole();
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            int id = User.Identity.GetUserId<int>();
+            ViewBag.Message = "id: " + id.ToString();
 
             return View();
         }
