@@ -12,21 +12,16 @@ namespace Project.UI.WebMVCApp.Models.VisitViewModels
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
 
-        public DateTime? Date { get; set; }
+        [Display(Name = "Code")]
+        public string Code { get; set; }
 
-        [Display(Name = "Lesson type")]
-        public string LessonType { get; set; }
+        [Display(Name = "Title")]
+        public string Title { get; set; }
 
-        [Display(Name = "Pair number")]
-        public int? PairNumber { get; set; }
+        [Display(Name = "Mode of study")]
+        public string ModeOfStudy { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
-        public int Subject_Techer_Id { get; set; }
-
-        [Display(Name = "Teacher")]
-        public string TeacherName { get; set; }
-
-        [Display(Name = "Subject")]
-        public string SubjectName { get; set; }
+        [Display(Name = "Language")]
+        public string Language { get; set; }
     }
 }

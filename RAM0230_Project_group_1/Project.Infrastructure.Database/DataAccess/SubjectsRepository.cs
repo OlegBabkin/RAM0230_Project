@@ -32,6 +32,11 @@ namespace Project.Infrastructure.Database.DataAccess
             return this.context.Subjects;
         }
 
+        public IEnumerable<Subject> GetSubjectsByTeacherId(int teacherId)
+        {
+            return this.context.Subjects.Where(s => s.Subject_teacher.Any(t => t.TeacherId == teacherId));
+        }
+
         public Subject GetByKey(int key)
         {
             return this.context.Subjects.FirstOrDefault(sb => sb.Id == key);

@@ -212,6 +212,7 @@
     <Compile Include="Models\VisitViewModels\PartialTeachersVisitViewModel.cs" />
     <Compile Include="Models\VisitViewModels\DetailsVisitViewModel.cs" />
     <Compile Include="Models\VisitViewModels\IndexVisitViewModel.cs" />
+    <Compile Include="Models\VisitViewModels\PartialVisitsVisitViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\NinjectDependencyResolver.cs" />
   </ItemGroup>

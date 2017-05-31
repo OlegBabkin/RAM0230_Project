@@ -1,15 +1,10 @@
 ﻿using AutoMapper;
-using Project.Infrastructure.DTO;
-using Project.Infrastructure.Services.Interfaces;
+using Project.Domain.Core;
+using Project.Domain.Repository;
 using Project.UI.WebMVCApp.Models;
 using Project.UI.WebMVCApp.Models.VisitViewModels;
-using Project.Domain.Core;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Project.Domain.Repository;
 
 namespace Project.UI.WebMVCApp.Controllers
 {
@@ -17,19 +12,42 @@ namespace Project.UI.WebMVCApp.Controllers
     public class VisitsController : Controller
     {
         private IUnitOfWork uow;
+        private int userId = 0;
+        private string userRole = "";
+
         public VisitsController(IUnitOfWork uow) { this.uow = uow; }
 
         // GET: Visits
         public ActionResult Index()
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<Visit, IndexVisitViewModel>()
-                .ForMember(dest => dest.TeacherName, opt => opt.MapFrom(src => src.Subject_teacher.User.Name + " " + src.Subject_teacher.User.Lastname))
-                .ForMember(dest => dest.SubjectName, opt => opt.MapFrom(src => src.Subject_teacher.Subject.Title)));
-
-            var visits = Mapper.Map<IEnumerable<Visit>, List<IndexVisitViewModel>>(uow.Visits.GetAllEntries());
-
             ViewBag.Title = "Students attendance control page";
-            return View(visits);
+
+            userId = User.Identity.GetUserId<int>();
+            userRole = User.Identity.GetUserRole();
+
+            Mapper.Initialize(cfg => cfg.CreateMap<Subject, IndexVisitViewModel>()
+                .ForMember(dest => dest.ModeOfStudy, opt => opt.MapFrom(src => src.ModeOfStudy.Name)));
+            if (userRole.Equals("teacher"))
+            {
+                var subjects = Mapper.Map<IEnumerable<Subject>, List<IndexVisitViewModel>>(
+                    uow.Subjects.GetSubjectsByTeacherId(userId));
+                return View(subjects);
+            }
+            //Mapper.Initialize(cfg => cfg.CreateMap<Visit, IndexVisitViewModel>()
+            //    .ForMember(dest => dest.TeacherName, opt => opt.MapFrom(src => src.Subject_teacher.User.Name + " " + src.Subject_teacher.User.Lastname))
+            //    .ForMember(dest => dest.SubjectName, opt => opt.MapFrom(src => src.Subject_teacher.Subject.Title)));
+            //if (userRole.Equals("teacher"))
+            //{
+            //    var visits = Mapper.Map<IEnumerable<Visit>, List<IndexVisitViewModel>>(
+            //        uow.Visits.FindBy(v => v.Subject_teacher.TeacherId == userId));
+            //    return View(visits);
+            //}
+
+            if (userRole.Equals("student"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Visits/Details/5

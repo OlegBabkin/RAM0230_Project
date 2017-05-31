@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using Project.UI.WebMVCApp.Models;
-using Project.Domain.Core;
 
 namespace Project.UI.WebMVCApp.Controllers
 {
@@ -13,7 +12,7 @@ namespace Project.UI.WebMVCApp.Controllers
 
             return View();
         }
-        [Authorize(Roles = "teacher")]
+        [Authorize(Roles = "teacher, student")]
         public ActionResult About()
         {
             ViewBag.Message = User.Identity.GetUserRole();

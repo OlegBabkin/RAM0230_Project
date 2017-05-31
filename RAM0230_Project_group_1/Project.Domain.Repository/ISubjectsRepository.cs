@@ -9,5 +9,6 @@ namespace Project.Domain.Repository
         IEnumerable<Group> GetSubjectGroups(Subject subject);
         IEnumerable<Student> GetSubjectStudents(Subject subject);
         IEnumerable<Subject_teacher> GetSubjectTeachers(Subject subject);
+        IEnumerable<Subject> GetSubjectsByTeacherId(int teacherId);
     }
 }
