@@ -37,6 +37,11 @@ namespace Project.Domain.Core
 
         public int RoleId { get; set; }
 
+        [StringLength(10)]
+        public string StudentCode { get; set; }
+
+        public virtual Student Student { get; set; }
+
         public virtual Role Role { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

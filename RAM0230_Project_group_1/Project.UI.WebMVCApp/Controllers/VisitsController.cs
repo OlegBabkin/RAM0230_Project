@@ -45,6 +45,17 @@ namespace Project.UI.WebMVCApp.Controllers
 
             if (userRole.Equals("student"))
             {
+                User studentUser = uow.Users.GetByKey(userId);
+                if (studentUser.StudentCode.Length > 0)
+                {
+                    Student student = uow.Students.GetByKey(studentUser.StudentCode);
+                    if (student != null)
+                    {
+                        var subjects = Mapper.Map<IEnumerable<Subject>, List<IndexVisitViewModel>>(student.Subjects);
+                        return View(subjects);
+                    }
+                    
+                }
                 return RedirectToAction("Index", "Home");
             }
             return RedirectToAction("Index", "Home");
